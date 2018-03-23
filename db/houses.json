@@ -1,0 +1,16 @@
+[
+    {
+    "name":"House 1",
+    "price": "200 grand",
+    "location": "NYC",
+    "creator": "41224d776a326fb40f000001"
+
+    },
+    {
+        "name":"House 2",
+        "price": "300 grand",
+        "location": "NYC",
+        "creator": "41224d776a326fb40f000002"
+    
+        }
+]
