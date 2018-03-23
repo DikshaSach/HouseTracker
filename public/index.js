@@ -80,7 +80,7 @@ function logInFunc(username, password){
 
 function sendAlert(){
     alert('You are logged in now!');
-    $('#dashboard').html(`Hey ${username} This is your dashboard`);
+    
     $('#houses').show();
     $('#register-acc').hide();
     $('#login-acc').hide();
@@ -116,8 +116,9 @@ function submitHouseInfo(){
         console.log(nameOfHouse, priceOfHouse, locationOfHouse);
         postHouses(nameOfHouse, priceOfHouse, locationOfHouse, function(data){
             console.log('posting my house');
-           
+                      
             myArr.push(data);
+            renderHouses(myArr);
             console.log(myArr);
         });
     });
@@ -175,16 +176,47 @@ function getHouses(){
 }
 
 function renderHouses(myArr){
-    
+    console.log(myArr);
+    $('#houseList').empty();
+    for(var i=0; i<myArr.length; i++){
+        $('#houseList').append(`<li houseID="${myArr[i]._id}" class="listItemHouse">
+        <span> This is the house name: ${myArr[i].name} </span>
+        <span> This is the house price: ${myArr[i].price} </span>
+        <span> This is the house location: ${myArr[i].location} </span>
+        <button type="button" class='delete' id='delete${[i]}' houseID='${myArr[i]._id}'>delete${[i]} </button> 
+        </li>`)
+    }
 }
 
 
 
 
+function onDelete(){
+    $('#houseList').on('click', '.delete', function() {
+        alert('button clicked');
+        const idParam =  $(this).attr('houseID');
+        console.log(idParam);
+       $(this).closest(".listItemHouse").remove();
 
+       $.ajax({
+        type: 'DELETE',
+        url: 'api/houses/'+ idParam,
+        contentType: 'application/json',
+        headers:{
+            'Authorization': "Bearer" + localStorage.getItem('token')
+        },
+        success: getHouses(),
+        error: function(err){
+            console.info('Theres an error with delete');
+            console.error(err);
+        }
+    });
+});
 
+};
 
 
 createAcc();
 logIn();
 submitHouseInfo();
+onDelete();
