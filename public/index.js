@@ -76,6 +76,9 @@ function logInFunc(username, password){
             console.error(err);
         }
     });
+    $('#createHouse').show();
+    $('#house-list h1').show();
+   
 }
 
 function sendAlert(){
@@ -164,7 +167,7 @@ function getHouses(){
                     price: data[i].price,
                     location: data[i].location,
                     _id: data[i]._id,
-                    isEditing: false
+                    
                 }
                 myArr.push(getData);
             }
@@ -184,6 +187,7 @@ function renderHouses(myArr){
         <span> This is the house price: ${myArr[i].price} </span>
         <span> This is the house location: ${myArr[i].location} </span>
         <button type="button" class='delete' id='delete${[i]}' houseID='${myArr[i]._id}'>delete${[i]} </button> 
+        <button type="button" class='edit' id='edit${[i]}' houseID='${myArr[i]._id}'>edit${[i]} </button>
         </li>`)
     }
 }
@@ -220,3 +224,8 @@ createAcc();
 logIn();
 submitHouseInfo();
 onDelete();
+
+$(document).ready(function() {
+  $('#house-list h1').hide();
+    $('#createHouse').hide();
+});
