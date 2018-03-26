@@ -6,11 +6,18 @@ mongoose.Promise = global.Promise;
 const passport = require('passport');
 //router desctructuring assignment with renaming two variables called router
 const {router: usersRouter} = require('./users');
+const session = require('express-session');
 const houseRouter = require('./routes/houses');
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 const {PORT, DATABASE_URL} = require('./config');
 const app = express();
 
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }));
 // whatfolder we use where our css files are
 app.use(express.static('public'));
 app.use('/api/houses', houseRouter);
@@ -27,17 +34,24 @@ app.use(function (req, res, next) {
 
   passport.use(localStrategy);
   passport.use(jwtStrategy);
-
+  
   // create user,pass
   app.use('/api/users', usersRouter);
   app.use('/api/auth', authRouter);
+  
 
   const jwtAuth = passport.authenticate('jwt', {session:false});
 
   app.get('/', (req, res)=>{
-    res.sendFile(__dirname + '/public/index.html');
-  });
+    res.render(__dirname + '/views/index.ejs',{
+       token: (req.session == null || req.session.token == null)?'':req.session.token
+    });
 
+
+
+  });
+app.set('view engine', 'ejs');
+  
   let server;
 
   function runServer(databaseUrl, port=PORT) {

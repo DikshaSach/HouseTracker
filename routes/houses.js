@@ -27,6 +27,12 @@ router.get('/:id', function(req, res) {
         });
 });
 
+
+
+
+
+
+
 router.post('/', jsonParser, function(req, res){
     const requiredFields = ['name', 'creator', 'location', 'price'];
     for (let i=0; i<requiredFields.length; i++) {

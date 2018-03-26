@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const {User} = require('./models');
 const router = express.Router();
 const jsonParser = bodyParser.json();
+//const session = require('express-session');
 
 // post request to create new user
 router.post('/', jsonParser, (req,res)=>{

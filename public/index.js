@@ -22,7 +22,8 @@ function createAcc(){
         dataType: 'json',
         // if successful reaching post endpoint then go to login function with username and pass
         success: function(){
-            logInFunc(username, password)
+            /*logInFunc(username, password)*/
+            window.location = 'sign-in.html';
         },
         // else endpoint was not reached
         error: function(err) {
@@ -54,6 +55,8 @@ function logInFunc(username, password){
             localStorage.setItem('token', resultData.authToken);
             localStorage.setItem('id', resultData.userID);
             console.log(resultData);
+            window.location = 'dashboard.html';
+/*
         // if successful then do a get request to api/protected
             $.ajax({
                 type: 'GET',
@@ -68,26 +71,28 @@ function logInFunc(username, password){
                 
                 sendAlert()
             
-            }) 
+            }) */
         },
         // if error password is wrong or username is wrong.
         error: function(err){
             console.info('Password is Wrong');
             console.error(err);
+            alert('Wrong password');
         }
     });
-    $('#createHouse').show();
-    $('#house-list h1').show();
    
 }
 
 function sendAlert(){
     alert('You are logged in now!');
-    
+    /*
     $('#houses').show();
     $('#register-acc').hide();
     $('#login-acc').hide();
+    */
+ 
     getHouses();
+
 }
 
 function logIn(){
@@ -117,13 +122,23 @@ function submitHouseInfo(){
             location: locationOfHouse
         }
         console.log(nameOfHouse, priceOfHouse, locationOfHouse);
+        // this is where the house is posted
         postHouses(nameOfHouse, priceOfHouse, locationOfHouse, function(data){
             console.log('posting my house');
                       
             myArr.push(data);
-            renderHouses(myArr);
+            
             console.log(myArr);
+            // get all the houses with updated house inside myArr now
+            $.ajax({
+                method: 'GET',
+                url: '/api/houses' + '/' + localStorage.getItem('id'),
+                success: response =>{
+                    renderHouses(response);
+                }
+            });
         });
+        
     });
 }
 
@@ -144,13 +159,14 @@ function postHouses( nameHouse, priceHouse, locationHouse, callback){
         },
         success: callback,
         error: function(err){
-            console.ingo("Theres an error");
+            console.log("Theres an error");
             console.error(err);
         }
     });
 }
 
 function getHouses(){
+ 
     $.ajax({
         type: 'GET',
         url: '/api/houses' + '/' + localStorage.getItem('id'),
@@ -159,6 +175,7 @@ function getHouses(){
         headers: {
             'Authorization': "Bearer" + localStorage.getItem('token')
         },
+        
         success: function(data){
             myArr = [];
             for(let i=0; i<data.length; i++){
@@ -179,7 +196,7 @@ function getHouses(){
 }
 
 function renderHouses(myArr){
-    console.log(myArr);
+ 
     $('#houseList').empty();
     for(var i=0; i<myArr.length; i++){
         $('#houseList').append(`<li houseID="${myArr[i]._id}" class="listItemHouse">
@@ -220,12 +237,91 @@ function onDelete(){
 };
 
 
+function onEdit(){
+    $('#houseList').on('click', '.edit', function() {
+        window.location = 'edit.html';
+       const edithouseid = $(this).attr('houseid');
+       console.log(edithouseid);
+       //console.log(localStorage.getItem('id'));
+       $.ajax({
+        type: 'GET',
+        url: '/api/houses' + '/' + localStorage.getItem('id'),
+        contentType: 'application/json',
+        dataType:'json',
+        headers: {
+            'Authorization': "Bearer" + localStorage.getItem('token')
+        },
+        
+        success: function (houseData){
+            const houses = houseData
+            //console.log(houses);
+            console.log(edithouseid);
+            const editHouseName = houses.filter(x => x._id === edithouseid).map(x=> x.name);
+            $('#house-name-edit').val($('#house-name-edit').val() + "blah");
+            console.log( $('#house-name-edit').val());
+            houses.filter(x => x._id === edithouseid).map(x=> x.location);
+            houses.filter(x => x._id === edithouseid).map(x=> x.price);
+
+            
+        }
+       
+        
+           
+                });  
+                
+    });
+}
+/*
+
+function populateEdit(houseData){
+    const houses = houseData
+console.log(houses);
+console.log(edithouseid);
+console.log(houses.filter(x => x._id === edithouseid));
+
+}*/
+
+function putHouses(path, newNameHouse, newPriceHouse, newLocationHouse, callback){
+    $.ajax({
+        type: 'PUT',
+        url: 'api/houses/'+ idParam,
+        contentType: 'application/json',
+        data: JSON.stringify({
+            name: newNameHouse,
+            price: newPriceHouse,
+            location: newLocationHouse
+        }),
+        headers: {
+            'Authorization': "Bearer" + localStorage.getItem('token')
+        },
+        success: callback,
+        error: function(err){
+            console.info('Theres an error');
+            console.error(err);
+        }
+    });
+}
+
+function logOut(){
+    $('.logOut').on('click', function(){
+        alert('button clicked');
+        localStorage.removeItem('token')
+        localStorage.removeItem('id')
+        window.location = '/';
+    })
+}
+
+logOut();
 createAcc();
 logIn();
 submitHouseInfo();
 onDelete();
+onEdit();
 
 $(document).ready(function() {
+    /*
   $('#house-list h1').hide();
     $('#createHouse').hide();
+ */
 });
+
