@@ -2,11 +2,15 @@
 <html>
 <head>
         <link rel="stylesheet" type="text/css" href="index.css"/>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
 
 <div id="dashboard-nav">
+        <a class="house-icon" href="/">
+            <img class="house-icon" src="houses_icon.png">
+        </a>
     <a href="#"class="logOut">LogOut</a>
 </div>
 <div id="dashboard"></div> 
@@ -25,13 +29,31 @@
        <span>house details</span>
        <input type="text" id="house-details" name="house-details">
        <br>
+       
        <button type="submit" class="house-submit">Submit House</button>
        <button type="button" class="house-edit">Edit house</button>
+       
+       
     </form>
  </div>
- <div id="add-house"><button type="button" id="adding-houses">Add</button></div>
+
+ <div id="add-house">
+     <button type="button" id="adding-houses">Add</button>
+     <button type="button" id="close">Close</button>
+</div>
+ 
+ 
+ <div id="iamtesting">
+    <form id="iamtestingthis" action="#">
+    <span>House Name</span>
+    <input type="text" id="house-name-test" name="house-name">
+    <input id="upload" type="file" class="upload" name="imgFront" accept="image/*" required="true" >
+    <button type="submit" class="house-submit">Submit House</button>
+</form>
+</div>
+ 
  <div id="house-list" >
-     <h1>These are your houses saved!</h1>
+     <h1>House Dashboard</h1>
      <ul id="houseList">
         </ul>
  </div>
@@ -42,6 +64,8 @@
 
 
 </body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="index.js"></script>
-<script src="dashboard.js"></script>
+<script src="dashboard.js" defer></script>
 </html>

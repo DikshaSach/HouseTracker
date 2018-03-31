@@ -6,7 +6,11 @@ const houseSchema = mongoose.Schema ({
     price: {type: String},
     location: {type: String},  
     details: {type: String},
-    creator: {type: mongoose.Schema.ObjectId, required: true}
+    creator: {type: mongoose.Schema.ObjectId, required: true},
+    image: {
+        type: String,
+        
+      }
 });
 
 houseSchema.methods.serialize = function(){
@@ -15,7 +19,8 @@ houseSchema.methods.serialize = function(){
         price: this.price,
         location: this.location,
         details: this.details,
-        creator: this.creator 
+        creator: this.creator,
+        image: this.image
     }
 }
 

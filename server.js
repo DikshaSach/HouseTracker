@@ -14,6 +14,7 @@ const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 const {PORT, DATABASE_URL} = require('./config');
 const app = express();
 
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -66,54 +67,6 @@ app.get('/dashboard', (req, res) =>{
 app.get('/register', (req, res) =>{
     res.render('register.ejs');
 });
-
-
-
-
-const aws = require('aws-sdk');
-aws.config.region = 'us-east-1';
-
-/*
- * Load the S3 information from the environment variables.
- */
-const S3_BUCKET = process.env.S3_BUCKET;
-app.get('/upload', (req, res) => res.render('upload.html'));
-app.get('/sign-s3', (req, res) => {
-    const s3 = new aws.S3();
-    const fileName = req.query['file-name'];
-    const fileType = req.query['file-type'];
-    const s3Params = {
-      Bucket: S3_BUCKET,
-      Key: fileName,
-      Expires: 60,
-      ContentType: fileType,
-      ACL: 'public-read'
-    };
-  
-    s3.getSignedUrl('putObject', s3Params, (err, data) => {
-      if(err){
-        console.log(err);
-        return res.end();
-      }
-      const returnData = {
-        signedRequest: data,
-        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-      };
-      res.write(JSON.stringify(returnData));
-      res.end();
-    });
-  });
-  app.post('/save-details', (req, res) => {
-    // TODO: Read POSTed form data and do something useful
-  });  
-
-
-
-
-
-
-
-
 
 
 

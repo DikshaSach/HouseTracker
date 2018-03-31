@@ -2,6 +2,9 @@
 var myArr = [];
 
 
+
+
+
 //Creating account
 function createAcc(){
     $('#register-acc').on('submit', function(event){  
@@ -108,9 +111,9 @@ function submitHouseInfo(){
         postHouses(nameOfHouse, priceOfHouse, locationOfHouse, detailsOfHouse, function(data){
             console.log('posting my house');
                       
-            myArr.push(data);
+           // myArr.push(data);
             
-            console.log(myArr);
+            
             // get all the houses with updated house inside myArr now
             $.ajax({
                 method: 'GET',
@@ -160,6 +163,7 @@ function getHouses(){
         },
         
         success: function(data){
+            console.log(data);
             myArr = [];
             for(let i=0; i<data.length; i++){
                 const getData = {
@@ -167,13 +171,14 @@ function getHouses(){
                     price: data[i].price,
                     location: data[i].location,
                     _id: data[i]._id,
+                    image: data[i].image
                     
                 }
                 myArr.push(getData);
             }
-            
+           console.log(myArr);
             renderHouses(myArr);
-            //enterApp();
+           
         }
     });
 }
@@ -193,6 +198,9 @@ function renderHouses(myArr){
         <br>
         <button type="button" class='delete' id='delete${[i]}' houseID='${myArr[i]._id}'>delete${[i]} </button> 
         <button type="button" class='edit' id='edit${[i]}' houseID='${myArr[i]._id}'>edit${[i]} </button>
+        <button type="button" class="upload-bttn">Upload Image</button>
+        
+       
         </li>`)
     }
     
@@ -280,13 +288,14 @@ function editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, deta
          _id : edithouseid
      }
   
-     putHouses('/api/houses' + '/' + edithouseid, nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, detailsOfHouseEdit);
+     putHouses('/api/houses' + '/' + edithouseid, nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, detailsOfHouseEdit);    
      $.ajax({
         method: 'GET',
         url: '/api/houses' + '/' + localStorage.getItem('id'),
         success: response =>{
             renderHouses(response);
             console.log('House is edited');
+            console.log(response);
         },
         error: function(err){
             console.info('Theres an error with updating.');
@@ -332,12 +341,40 @@ function logOut(){
     })
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 logOut();
 createAcc();
 logIn();
 submitHouseInfo();
 onDelete();
 onEdit();
+
+
+
+
+
 $('#adding-houses').on('click', function(){
     $('#houses-form').show();
 });
@@ -346,8 +383,15 @@ $(document).ready(function() {
 $('#houses-form').hide();
 $('.register').on('click', function(){
     window.location = 'register';
+});
+$('#iamtesting').hide();
+
+
+$('#houseList').on('click', '.upload-bttn', function() {
+    $('#iamtesting').show();
+});
+$('#close').on('click', function(){
+    $('#houses-form').hide();
 })
-
-
 });
 

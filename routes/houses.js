@@ -5,7 +5,22 @@ const mongoose = require('mongoose');
 
 const {HouseLog} = require('../models/houses.js');
 const passport = require('passport');
+/*
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET
+});
+const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'dresses',
+    allowedFormats: ['jpg', 'png', 'jpeg'],
+    transformation: [{height: 1500, width: 1000}]
+  });
 
+
+  const upload = multer({storage});
+*/
 router.get('/', function(req, res) {
     HouseLog
         .find()
@@ -51,7 +66,8 @@ router.post('/', jsonParser, function(req, res){
             price: req.body.price,
             location: req.body.location,
             creator: req.body.creator,
-            details: req.body.details
+            details: req.body.details,
+            image: req.body.image
 
         }).then(log => res.status(201).json(log))
         .catch(err =>{
@@ -81,7 +97,7 @@ router.put('/:id', jsonParser, (req, res)=>{
         });
     }
     const updated = {};
-    const updatableFields = ['name', 'price', 'location', 'details'];
+    const updatableFields = ['name', 'price', 'location', 'details', 'image'];
     updatableFields.forEach(field => {
         if (field in req.body) {
             updated[field] = req.body[field];
