@@ -72,8 +72,7 @@ img.house-image{
 
 }
 footer{
-    position:absolute;
-    bottom:0;
+   
     width:100%;
     border-top: 1px solid black;
 
@@ -91,7 +90,7 @@ footer{
 }
 #div1, #div2, #div3{
 width: 33.33333%;
-height: 100px;
+
 float: left;
 text-align: center;
 }
