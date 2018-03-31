@@ -152,7 +152,7 @@ function postHouses( nameHouse, priceHouse, locationHouse, detailsOfHouse, callb
 }
 
 function getHouses(){
- 
+    location.reload();
     $.ajax({
         type: 'GET',
         url: '/api/houses' + '/' + localStorage.getItem('id'),
@@ -184,7 +184,7 @@ function getHouses(){
 }
 
 function renderHouses(myArr){
- 
+    
     $('#houseList').empty();
     for(var i=0; i<myArr.length; i++){
         $('#houseList').append(`<li houseID="${myArr[i]._id}" class="listItemHouse">
@@ -195,6 +195,8 @@ function renderHouses(myArr){
         <span> This is the house location: ${myArr[i].location} </span>
         <br
         <span> This is the house details: ${myArr[i].details} <span>
+        <br>
+        <span> This is the house image: ${myArr[i].image} <span>
         <br>
         <button type="button" class='delete' id='delete${[i]}' houseID='${myArr[i]._id}'>delete${[i]} </button> 
         <button type="button" class='edit' id='edit${[i]}' houseID='${myArr[i]._id}'>edit${[i]} </button>
@@ -236,7 +238,10 @@ function onDelete(){
 
 function onEdit(){
     $('#houseList').on('click', '.edit', function() {
-       
+
+        $('#houses-form').show();
+       $('.house-submit').hide();
+       $('#createHouse > h1').html('Edit your house ');
        const edithouseid = $(this).attr('houseid');
        
        //console.log(localStorage.getItem('id'));
@@ -302,6 +307,8 @@ function editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, deta
             console.error(err);
         }
     });
+
+    $('#houses-form').hide();
    });
     
     
@@ -377,6 +384,8 @@ onEdit();
 
 $('#adding-houses').on('click', function(){
     $('#houses-form').show();
+    $('#createHouse > h1').html('Add House Details');
+
 });
 
 $(document).ready(function() {
