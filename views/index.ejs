@@ -3,70 +3,48 @@
 <head>
     <link rel="stylesheet" type="text/css" href="index.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript"> 
-        var token='<%=token%>';
-    </script>
-	<title>House</title>
+   
+	<title>Houses</title>
 </head>
 <body>
-    <main>
-        <nav>
-            <a href="./sign-in.html"class="sign-in">Sign In</a>
-            <a href="#"class="register">Register</a>            
-        </nav>
-    </main>
-    <header>
-        <p>This will be some header text</p>
-    </header>
+    <nav>
+            <%- include navbar.ejs %>
+    </nav>
+  
+    
 
-    <div class="register-ac">
-        <form action="#" id="register-acc">
-                <h1>REGISTER</h1>
-            <input type="text" id="username" name="username" placeholder="Username" required>
-            <br>
-            <input type="text" id="password" name="password" placeholder="Password" required>
-            
-            <button type="submit" id="register-submit">Register</button>
-        </form>
+
+
+<div id="page-info">
+<h1>Title Goes Here</h1>
+<p>     In the market for a new house or apartment? 
+        <br>
+        Keep track of all your favorite ones in one easy location
+</p>
+</div>
+<div id="divs-container">
+    <div id="div1">
+            <img class="organized" src="organized.png"/>
     </div>
 
-    <br>
-    <br>
-<!--
- <div class="login">
-     <form id="login-acc" action="#">
-            <h1>LOGIN</h1>
-         <input type="text" id="acc-username" name="username" placeholder="Enter User" required>
-         <br>
-         <input type="text" id="acc-password" name="password" placeholder="Enter password" required>
-         <button type="submit" class="login-submit">Login</button>
-     </form>
- </div>
--->  
-<!--
- <div id="dashboard"></div> 
- <div id="houses">
-    <form id="createHouse" action="#">
-        <h1>Enter New House Details</h1>
-        <span>House Name</span>
-       <input type="text" id="house-name" name="house-name">
-       <br>
-       <span>house price</span>
-       <input type="text" id="house-price" name="house-price">
-       <br>
-       <span>house location</span>
-       <input type="text" id="house-location" name="house-location">
-       <br>
-       <button type="submit" class="house-submit">Submit House</button>
-    </form>
- </div>
- <div id="house-list" >
-     <h1>These are your houses saved!</h1>
-     <ul id="houseList">
-        
-     </ul>
- </div>
--->
+    <div id="div2">
+            <img class="upload" src="upload.png"/>
+    </div>
+    <div id="div3">
+            <img class="favorite" src="favorite.png"/>
+    </div>
+</div>
+
+
+
+
+
+
+
+<footer>
+        <%- include footer.ejs %>
+</footer>
 </body>
 <script src="index.js"></script>
+<!--<script src="dashboard.js"></script>-->
 </html>

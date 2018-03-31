@@ -43,15 +43,25 @@ app.use(function (req, res, next) {
   const jwtAuth = passport.authenticate('jwt', {session:false});
 
   app.get('/', (req, res)=>{
-    res.render(__dirname + '/views/index.ejs',{
-       token: (req.session == null || req.session.token == null)?'':req.session.token
-    });
+    res.render(__dirname + '/views/index.ejs');
 
 
 
   });
-app.set('view engine', 'ejs');
+
   
+
+app.set('view engine', 'ejs');
+app.get('/signin', (req, res) =>{
+    res.render('signin.ejs');
+  });
+
+app.get('/dashboard', (req, res) =>{
+    res.render('dashboard.ejs');
+});
+app.get('/register', (req, res) =>{
+    res.render('register.ejs');
+});
   let server;
 
   function runServer(databaseUrl, port=PORT) {

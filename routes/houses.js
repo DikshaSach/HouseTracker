@@ -34,7 +34,7 @@ router.get('/:id', function(req, res) {
 
 
 router.post('/', jsonParser, function(req, res){
-    const requiredFields = ['name', 'creator', 'location', 'price'];
+    const requiredFields = ['name', 'creator', 'location', 'price', 'details'];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -50,7 +50,8 @@ router.post('/', jsonParser, function(req, res){
             name: req.body.name,
             price: req.body.price,
             location: req.body.location,
-            creator: req.body.creator
+            creator: req.body.creator,
+            details: req.body.details
 
         }).then(log => res.status(201).json(log))
         .catch(err =>{
@@ -80,7 +81,7 @@ router.put('/:id', jsonParser, (req, res)=>{
         });
     }
     const updated = {};
-    const updatableFields = ['name', 'price', 'location'];
+    const updatableFields = ['name', 'price', 'location', 'details'];
     updatableFields.forEach(field => {
         if (field in req.body) {
             updated[field] = req.body[field];

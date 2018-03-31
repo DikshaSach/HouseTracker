@@ -1,0 +1,151 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    background-color: antiquewhite;
+    font-size: 30px;
+    border-bottom: 1px solid black;
+    text-align: right; 
+    height: 50px;;
+}
+.house-icon{
+    height: 50px;
+    width:auto;
+    float: left;
+}
+.container-register{
+    position: relative;
+}
+img.house-image{
+    max-width: 80%;
+   z-index: 2;
+   
+    width: auto;
+    height: auto;
+    display:block;
+    margin:auto;
+   
+}
+
+#register-acc{
+    top:190px;
+    left: 50%;;
+    position: absolute;
+    margin: auto;
+   width: 535px;
+   text-align: center;
+    margin-left: -267px;
+    border-radius: 3px;
+}
+.register-ac{
+    height: 200px;
+}
+#login-acc{
+    top:190px;
+    left: 50%;;
+    position: absolute;
+    margin: auto;
+   width: 535px;
+   text-align: center;
+    margin-left: -267px;
+    border-radius: 3px;
+}
+.login{
+    height: 200px;
+}
+
+
+#dashboard-nav{
+    background-color: pink;
+    border-bottom: 2px solid black;
+    font-size: 30px;
+    text-align: right;
+
+}
+footer{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    border-top: 1px solid black;
+
+}
+
+#page-info{
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 100px;
+    height:50vh;
+    border-bottom: 2px solid black;
+}
+#divs-container{
+    width: 100%;
+}
+#div1, #div2, #div3{
+width: 33.33333%;
+height: 100px;
+float: left;
+text-align: center;
+}
+#div1{
+    background-color: pink;
+    
+}
+.favorite, .organized, .upload{
+    height: 50px;
+    width: auto;
+    
+}
+#div2{
+    background-color: red;
+}
+#div3{
+    background-color: blue;
+}
+#houseList{
+    width: 90%;
+    list-style-type: none;
+    margin: 0 auto;
+}
+.listItemHouse{
+    margin-top: 10px;
+    width: 30%;
+    float: left;
+    height: 300px;
+    border: 1px solid black;
+    margin-left: 10px;
+   
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+
+    #register-acc{
+        top: 160px;
+    } 
+    #login-acc{
+        top: 160px;  
+    }
+
+}
+@media only screen and (max-width: 500px) {
+
+    #register-acc{
+        top: 120px;
+    }
+    #login-acc{
+        top: 120px;
+    } 
+}
+@media only screen and (max-width: 400px) {
+
+    #register-acc{
+        top: 100px;
+    } 
+    #login-acc{
+        top: 100px;
+    } 
+}

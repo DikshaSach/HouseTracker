@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
+	<title>House</title>
+</head>
+<body>
+
+
+<nav>
+        <%- include navbar.ejs %>
+</nav>
+
+
+<div class="container-register">
+        <img class='house-image' src="house-outline-clipart-house-roof-hi.png"/> 
+<div class="login">
+        <form id="login-acc" action="#">
+               <h1>LOGIN</h1>
+            <input type="text" id="acc-username" name="username" placeholder="Enter User" required>
+            <br>
+            <input type="text" id="acc-password" name="password" placeholder="Enter password" required>
+            <br>
+            <button type="submit" class="login-submit">Login</button>
+            <p>Don't have an account? Register <a href="/">Here!</a></p>
+        </form>
+    </div>
+    </div>
+
+    <footer>
+            <%- include footer.ejs %>
+    </footer>
+</body>
+<script src="index.js"></script>
+<!--<script src="dashboard.js"></script>-->
+</html>

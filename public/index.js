@@ -23,7 +23,7 @@ function createAcc(){
         // if successful reaching post endpoint then go to login function with username and pass
         success: function(){
             /*logInFunc(username, password)*/
-            window.location = 'sign-in.html';
+            window.location = 'signin';
         },
         // else endpoint was not reached
         error: function(err) {
@@ -55,23 +55,8 @@ function logInFunc(username, password){
             localStorage.setItem('token', resultData.authToken);
             localStorage.setItem('id', resultData.userID);
             console.log(resultData);
-            window.location = 'dashboard.html';
-/*
-        // if successful then do a get request to api/protected
-            $.ajax({
-                type: 'GET',
-                url: 'api/protected',
-                contentType: 'application/json',
-                dataType: 'json',
-                headers: {
-                    'Authorization': "Bearer " + localStorage.getItem('token')
-                },
-                // if successfull go to sendalert function
-                success: 
-                
-                sendAlert()
-            
-            }) */
+            window.location = 'dashboard';
+
         },
         // if error password is wrong or username is wrong.
         error: function(err){
@@ -85,12 +70,6 @@ function logInFunc(username, password){
 
 function sendAlert(){
     alert('You are logged in now!');
-    /*
-    $('#houses').show();
-    $('#register-acc').hide();
-    $('#login-acc').hide();
-    */
- 
     getHouses();
 
 }
@@ -115,15 +94,18 @@ function submitHouseInfo(){
         const nameOfHouse = $('#house-name').val();
         const priceOfHouse = $('#house-price').val();
         const locationOfHouse = $('#house-location').val();
+        const detailsOfHouse = $('#house-details').val();
 
         const submitHouse = {
             name: nameOfHouse,
             price: priceOfHouse,
-            location: locationOfHouse
+            location: locationOfHouse,
+            details: detailsOfHouse
+            
         }
-        console.log(nameOfHouse, priceOfHouse, locationOfHouse);
+        console.log(submitHouse);
         // this is where the house is posted
-        postHouses(nameOfHouse, priceOfHouse, locationOfHouse, function(data){
+        postHouses(nameOfHouse, priceOfHouse, locationOfHouse, detailsOfHouse, function(data){
             console.log('posting my house');
                       
             myArr.push(data);
@@ -142,7 +124,7 @@ function submitHouseInfo(){
     });
 }
 
-function postHouses( nameHouse, priceHouse, locationHouse, callback){
+function postHouses( nameHouse, priceHouse, locationHouse, detailsOfHouse, callback){
     $.ajax({
         type: 'POST',
         url: '/api/houses',
@@ -152,6 +134,7 @@ function postHouses( nameHouse, priceHouse, locationHouse, callback){
            name: nameHouse,
            price: priceHouse,
            location: locationHouse,
+           details: detailsOfHouse,
            creator: localStorage.getItem('id')
         }),
         headers:{
@@ -188,7 +171,7 @@ function getHouses(){
                 }
                 myArr.push(getData);
             }
-            console.log(myArr);
+            
             renderHouses(myArr);
             //enterApp();
         }
@@ -201,12 +184,18 @@ function renderHouses(myArr){
     for(var i=0; i<myArr.length; i++){
         $('#houseList').append(`<li houseID="${myArr[i]._id}" class="listItemHouse">
         <span> This is the house name: ${myArr[i].name} </span>
+        <br>
         <span> This is the house price: ${myArr[i].price} </span>
+        <br>
         <span> This is the house location: ${myArr[i].location} </span>
+        <br
+        <span> This is the house details: ${myArr[i].details} <span>
+        <br>
         <button type="button" class='delete' id='delete${[i]}' houseID='${myArr[i]._id}'>delete${[i]} </button> 
         <button type="button" class='edit' id='edit${[i]}' houseID='${myArr[i]._id}'>edit${[i]} </button>
         </li>`)
     }
+    
 }
 
 
@@ -214,7 +203,7 @@ function renderHouses(myArr){
 
 function onDelete(){
     $('#houseList').on('click', '.delete', function() {
-        alert('button clicked');
+        
         const idParam =  $(this).attr('houseID');
         console.log(idParam);
        $(this).closest(".listItemHouse").remove();
@@ -239,9 +228,9 @@ function onDelete(){
 
 function onEdit(){
     $('#houseList').on('click', '.edit', function() {
-        window.location = 'edit.html';
+       
        const edithouseid = $(this).attr('houseid');
-       console.log(edithouseid);
+       
        //console.log(localStorage.getItem('id'));
        $.ajax({
         type: 'GET',
@@ -250,46 +239,78 @@ function onEdit(){
         dataType:'json',
         headers: {
             'Authorization': "Bearer" + localStorage.getItem('token')
-        },
-        
+        }, 
         success: function (houseData){
             const houses = houseData
             //console.log(houses);
-            console.log(edithouseid);
-            const editHouseName = houses.filter(x => x._id === edithouseid).map(x=> x.name);
-            $('#house-name-edit').val($('#house-name-edit').val() + "blah");
-            console.log( $('#house-name-edit').val());
-            houses.filter(x => x._id === edithouseid).map(x=> x.location);
-            houses.filter(x => x._id === edithouseid).map(x=> x.price);
-
             
-        }
-       
-        
+            // extract from all the houses the user created the specific one with speciic id
+            const editHouse = houses.find(x => x._id === edithouseid);
+            console.log(editHouse.name, editHouse.price, editHouse.location);
+            $('#house-name').val(editHouse.name);
+            $('#house-price').val(editHouse.price);
+            $('#house-location').val(editHouse.location);
+            $('#house-details').val(editHouse.details);
+            const nameOfHouseEdit = $('#house-name').val();
+            const priceOfHouseEdit = $('#house-price').val();
+            const locationOfHouseEdit = $('#house-location').val();
+            const detailsOfHouseEdit = $('#house-details').val();
            
+            
+            editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, detailsOfHouseEdit, edithouseid);
+                   
+        }
                 });  
-                
+                      
     });
 }
-/*
+function editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, detailsOfHouseEdit, edithouseid){
+ 
+    $('.house-edit').on('click', function(){
+        const nameOfHouseEdit = $('#house-name').val();
+            const priceOfHouseEdit = $('#house-price').val();
+            const locationOfHouseEdit = $('#house-location').val();
+            const detailsOfHouseEdit = $('#house-details').val();
+           
+        const editHouse = {
+         name : nameOfHouseEdit,
+         price : priceOfHouseEdit,
+         location : locationOfHouseEdit,
+         details : detailsOfHouseEdit,
+         _id : edithouseid
+     }
+  
+     putHouses('/api/houses' + '/' + edithouseid, nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, detailsOfHouseEdit);
+     $.ajax({
+        method: 'GET',
+        url: '/api/houses' + '/' + localStorage.getItem('id'),
+        success: response =>{
+            renderHouses(response);
+            console.log('House is edited');
+        },
+        error: function(err){
+            console.info('Theres an error with updating.');
+            console.error(err);
+        }
+    });
+   });
+    
+    
+};
 
-function populateEdit(houseData){
-    const houses = houseData
-console.log(houses);
-console.log(edithouseid);
-console.log(houses.filter(x => x._id === edithouseid));
 
-}*/
 
-function putHouses(path, newNameHouse, newPriceHouse, newLocationHouse, callback){
+
+function putHouses(path, newNameHouse, newPriceHouse, newLocationHouse, newDetailsHouse, callback){
     $.ajax({
         type: 'PUT',
-        url: 'api/houses/'+ idParam,
+        url: path,
         contentType: 'application/json',
         data: JSON.stringify({
             name: newNameHouse,
             price: newPriceHouse,
-            location: newLocationHouse
+            location: newLocationHouse,
+            details: newDetailsHouse
         }),
         headers: {
             'Authorization': "Bearer" + localStorage.getItem('token')
@@ -304,7 +325,7 @@ function putHouses(path, newNameHouse, newPriceHouse, newLocationHouse, callback
 
 function logOut(){
     $('.logOut').on('click', function(){
-        alert('button clicked');
+       
         localStorage.removeItem('token')
         localStorage.removeItem('id')
         window.location = '/';
@@ -317,11 +338,16 @@ logIn();
 submitHouseInfo();
 onDelete();
 onEdit();
+$('#adding-houses').on('click', function(){
+    $('#houses-form').show();
+});
 
 $(document).ready(function() {
-    /*
-  $('#house-list h1').hide();
-    $('#createHouse').hide();
- */
+$('#houses-form').hide();
+$('.register').on('click', function(){
+    window.location = 'register';
+})
+
+
 });
 
