@@ -37,10 +37,7 @@ function uploadImage(){
    const imageArr = [];
 
     function imagesUrl(imageurl){
-        
-
-        $('#iamtestingthis').on('submit', function(event){
-         
+        $('#imageForm').on('submit', function(event){
             event.preventDefault();
 
             const imageLink = imageurl;
@@ -48,53 +45,27 @@ function uploadImage(){
      
             const nameOfHouse = $('#house-name-test').val();
             console.log(nameOfHouse);
-            $.ajax({
-             type: 'GET',
-             url: '/api/houses' + '/' + localStorage.getItem('id'),
-             contentType: 'application/json',
-             dataType:'json',
-             headers: {
-                 'Authorization': "Bearer" + localStorage.getItem('token')
-             }, 
-             success: function (houseData){
-                 const houses = houseData
-                 //console.log(houses);
+            requestHouse.get('/api/houses' + '/' + localStorage.getItem('id'), function(houseData){
+                const houses = houseData
                 
-                 
-                 // extract from all the houses the user created the specific one with speciic id
-                 const editHouse = houses.find(x => x.name === nameOfHouse);
-                 //console.log(editHouse._id);
-                 const thisIsHouseId = editHouse._id;
-                putrequest(thisIsHouseId, imageLink);
-                
-             }
-
-       });
-       
+                // extract from all the houses the user created the specific one with speciic id
+                const editHouse = houses.find(x => x.name === nameOfHouse);
+                //console.log(editHouse._id);
+                const thisIsHouseId = editHouse._id;
+               putrequest(thisIsHouseId, imageLink);
+            })
      });    
         };
 };
 function putrequest(thisIsHouseId, imageLink){
+   
     console.log('in putrequest');
-    $.ajax({
-        type: 'PUT',
-        url: '/api/houses' + '/' + thisIsHouseId,
-        contentType: 'application/json',
-        data: JSON.stringify({
-           image: imageLink,
-        }),
-        headers: {
-            'Authorization': "Bearer" + localStorage.getItem('token')
-        },
-        success: getHouses(),
-       
-        
-        
-        error: function(err){
-            console.info('This didnt work upload');
-            console.error(err);
-        }
+    const imageObj = {image: imageLink };
+    requestHouse.put('/api/houses' + '/' + thisIsHouseId, imageObj, function(){
+        getHouses()
     });
+
+    
 }
 
 

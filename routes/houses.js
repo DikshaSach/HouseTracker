@@ -5,22 +5,7 @@ const mongoose = require('mongoose');
 
 const {HouseLog} = require('../models/houses.js');
 const passport = require('passport');
-/*
-cloudinary.config({ 
-  cloud_name: process.env.CLOUD_NAME, 
-  api_key: process.env.CLOUD_KEY,
-  api_secret: process.env.CLOUD_SECRET
-});
-const storage = cloudinaryStorage({
-    cloudinary: cloudinary,
-    folder: 'dresses',
-    allowedFormats: ['jpg', 'png', 'jpeg'],
-    transformation: [{height: 1500, width: 1000}]
-  });
 
-
-  const upload = multer({storage});
-*/
 router.get('/', function(req, res) {
     HouseLog
         .find()
@@ -49,7 +34,7 @@ router.get('/:id', function(req, res) {
 
 
 router.post('/', jsonParser, function(req, res){
-    const requiredFields = ['name', 'creator', 'location', 'price', 'details'];
+    const requiredFields = ['name', 'creator', 'location', 'price', 'details', 'garage', 'heating', 'cooling', 'pool'];
     for (let i=0; i<requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -67,6 +52,10 @@ router.post('/', jsonParser, function(req, res){
             location: req.body.location,
             creator: req.body.creator,
             details: req.body.details,
+            garage: req.body.garage,
+            heating: req.body.heating,
+            pool: req.body.pool,
+            cooling: req.body.pool,
             image: req.body.image
 
         }).then(log => res.status(201).json(log))
@@ -97,7 +86,7 @@ router.put('/:id', jsonParser, (req, res)=>{
         });
     }
     const updated = {};
-    const updatableFields = ['name', 'price', 'location', 'details', 'image'];
+    const updatableFields = ['name', 'price', 'location', 'details', 'image', 'garage', 'heating', 'cooling', 'pool'];
     updatableFields.forEach(field => {
         if (field in req.body) {
             updated[field] = req.body[field];
