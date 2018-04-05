@@ -44,7 +44,7 @@ function uploadImage(){
             const imageLink = imageurl;
             console.log(imageLink);
      
-            const nameOfHouse = $('#house-name').val();
+            const nameOfHouse = $('#house-name-for-image').val();
             console.log(nameOfHouse);
             requestHouse.get('/api/houses' + '/' + localStorage.getItem('id'), function(houseData){
                 const houses = houseData

@@ -72,6 +72,7 @@ function getHouses() {
 
 function renderHouses(myArr) {
     $('#houseList').empty();
+    $('#adding-houses').show();
     for (var i = 0; i < myArr.length; i++) {
 
         $('#houseList').append(`<li houseID="${myArr[i]._id}" id="${myArr[i]._id}" class="listItemHouse">
