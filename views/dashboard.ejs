@@ -3,15 +3,20 @@
 <head>
         <link rel="stylesheet" type="text/css" href="index.css"/>
         <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500|Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
             <div id="dashboard-nav">
-                    <a class="house-icon" href="/">
-                        <img class="house-icon" src="houses_icon.png">
-                    </a>
-                <a href="#"class="logOut">LogOut</a>
-                <a href="/myaccount" class="myAccount">myAccount</a>
+                <div id="icon-title"> <a class="house-icon" href="/">
+                    <img class="house-icon" src="houses_icon.png">
+                </a>
+                <h1 class="house-tracker">House Tracker</h1></div>
+                
+                   <div id="links"><a href="#" class="about-page">About &#8226; </a>
+                    <a href="/myaccount" class="myAccount">MyAccount &#8226; </a>
+                    <a href="#"class="logOut">LogOut</a></div>
+                
             </div>
         <div id="singleHouseInfoDiv">
 
@@ -19,24 +24,26 @@
 
 
 <div id="dashboard"></div> 
-
-
  <div id="houses-form" style="display:none;">
     <form id="createHouse" action="#">
         <input type="image" src="images/close.png" class="close-houses-form">
-        
+        <h1>Fill Out the details below:</h1>
         <span>House Name</span>
        <input type="text" id="house-name" name="house-name">
+       <br>
        <br>
        <span>house price</span>
        <input type="text" id="house-price" name="house-price">
        <br>
+       <br>
        <span>house location</span>
        <input type="text" id="house-location" name="house-location">
+       <br>
        <br>
        <span>house details</span>
        <input type="text" id="house-details" name="house-details">
        <br> 
+       <br>
        <span>
             <section>
                 <label>How many bedrooms?</label>
@@ -49,6 +56,7 @@
             </select>
                 </section>
                 </span>
+       <br>
        <br>
        <span>
             <section>
@@ -63,6 +71,7 @@
                 </section>
                 </span>
        <br>
+       <br>
        <span>
         <section>
             <label>Does it Have a garage?</label>
@@ -70,7 +79,7 @@
             <option value="No">No</option></select>
             </section>
             </span>
-
+            <br>
         <span>
         <section>
             <label>What Kind Of cooling</label>
@@ -79,7 +88,7 @@
             <option value="Other">Other</option></select>
         </section>
         </span>
-
+        <br>
         <span>
         <section>
             <label>What kind of heating</label>
@@ -88,7 +97,7 @@
             <option value="Other">Other</option></select>
         </section>
         </span>
-
+        <br>
         <span>
         <section>
             <label>Does it Have a pool?</label>
@@ -112,9 +121,13 @@
  <div id="imageFormDiv" style="display:none;">
     <form id="imageForm" action="#">
     <span>House Name</span>
+    <br>
     <input type="text" id="house-name-test" name="house-name">
     <br>
+    <br>
     <input id="upload" type="file" class="upload" name="imgFront" accept="image/*" required="true" >
+    <br>
+    <br>
     <button type="submit" class="house-submit-upload">Submit House</button>
     <button type="button" class="house-upload-form-close">Close</button>
 </form>
@@ -136,6 +149,8 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="index.js"></script>
+<script src="account.js"></script>
+<script src="clickHandlers.js"></script>
 <script src="http.js"></script>
 <script src="dashboard.js" defer></script>
 </html>

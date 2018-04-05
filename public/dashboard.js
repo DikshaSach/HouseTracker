@@ -67,8 +67,9 @@ function putrequest(thisIsHouseId, imageLink){
         getHouses();
     });
     displayClickedHouse(thisIsHouseId);
-    $('#house-list').show();  
-    $('#singleHouseInfoDiv').hide();
+  
+    
+    $('#singleHouseInfoDiv').show();
 }
 
 
