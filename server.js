@@ -8,7 +8,7 @@ const passport = require('passport');
 //router desctructuring assignment with renaming two variables called router
 const {router: usersRouter} = require('./users');
 const session = require('express-session');
-const houseRouter = require('./routes/houses');
+const houseRouter = require('./houses/router');
 
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 const {PORT, DATABASE_URL} = require('./config');
@@ -63,6 +63,9 @@ app.get('/signin', (req, res) =>{
 
 app.get('/dashboard', (req, res) =>{
     res.render('dashboard.ejs');
+});
+app.get('/myaccount', (req,res)=>{
+    res.render('myaccount.ejs');
 });
 app.get('/register', (req, res) =>{
     res.render('register.ejs');

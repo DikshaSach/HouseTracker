@@ -39,6 +39,7 @@ function uploadImage(){
     function imagesUrl(imageurl){
         $('#imageForm').on('submit', function(event){
             event.preventDefault();
+            $('#imageFormDiv').hide();
 
             const imageLink = imageurl;
             console.log(imageLink);
@@ -57,15 +58,17 @@ function uploadImage(){
      });    
         };
 };
+
 function putrequest(thisIsHouseId, imageLink){
    
     console.log('in putrequest');
     const imageObj = {image: imageLink };
     requestHouse.put('/api/houses' + '/' + thisIsHouseId, imageObj, function(){
-        getHouses()
+        getHouses();
     });
-
-    
+    displayClickedHouse(thisIsHouseId);
+    $('#house-list').show();  
+    $('#singleHouseInfoDiv').hide();
 }
 
 

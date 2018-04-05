@@ -2,26 +2,29 @@
 <html>
 <head>
         <link rel="stylesheet" type="text/css" href="index.css"/>
-        
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500|Raleway" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
+            <div id="dashboard-nav">
+                    <a class="house-icon" href="/">
+                        <img class="house-icon" src="houses_icon.png">
+                    </a>
+                <a href="#"class="logOut">LogOut</a>
+                <a href="/myaccount" class="myAccount">myAccount</a>
+            </div>
         <div id="singleHouseInfoDiv">
-    
+
         </div>
-<div id="dashboard-nav">
-        <a class="house-icon" href="/">
-            <img class="house-icon" src="houses_icon.png">
-        </a>
-    <a href="#"class="logOut">LogOut</a>
-</div>
+
 
 <div id="dashboard"></div> 
 
 
- <div id="houses-form">
+ <div id="houses-form" style="display:none;">
     <form id="createHouse" action="#">
-        <h1></h1>
+        <input type="image" src="images/close.png" class="close-houses-form">
+        
         <span>House Name</span>
        <input type="text" id="house-name" name="house-name">
        <br>
@@ -33,11 +36,36 @@
        <br>
        <span>house details</span>
        <input type="text" id="house-details" name="house-details">
-       <br>  
-       
+       <br> 
+       <span>
+            <section>
+                <label>How many bedrooms?</label>
+                <select id="house-bedroom" class="house-bedroom" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+                </section>
+                </span>
+       <br>
+       <span>
+            <section>
+                <label>How many bathrooms?</label>
+                <select id="house-bathroom" class="house-bathroom" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+                </section>
+                </span>
+       <br>
        <span>
         <section>
-            <label>Does it Have a Agrage</label>
+            <label>Does it Have a garage?</label>
             <select id="house-garage" class="house-garage" required><option value="Yes">Yes</option>
             <option value="No">No</option></select>
             </section>
@@ -76,23 +104,25 @@
  </div>
 
  <div id="add-house">
-     <button type="button" id="adding-houses">Add</button>
-     <button type="button" id="close">Close</button>
+     <input type="image" src="images/add.png" id="adding-houses">
+    <!-- <button type="button" id="adding-houses">Add</button> -->
 </div>
  
  
- <div id="imageFormDiv">
+ <div id="imageFormDiv" style="display:none;">
     <form id="imageForm" action="#">
     <span>House Name</span>
     <input type="text" id="house-name-test" name="house-name">
+    <br>
     <input id="upload" type="file" class="upload" name="imgFront" accept="image/*" required="true" >
     <button type="submit" class="house-submit-upload">Submit House</button>
+    <button type="button" class="house-upload-form-close">Close</button>
 </form>
 </div>
  
  <div id="house-list" >
     <h1>House Dashboard</h1>
-     <a class="hot-houses" href="#">Hot Houses</a>
+     
      <ul id="houseList">
         </ul>
  </div>

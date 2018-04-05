@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 const {DATABASE_URL} = require('../config');
-const {HouseLog} = require('../models/houses');
+const {HouseLog} = require('../houses/models');
 
 const logSeed = require('../db/houses.json');
 

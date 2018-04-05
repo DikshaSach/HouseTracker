@@ -18,9 +18,7 @@ var requestHouse = {
             url: url,
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify(
-                submitHouse,
-            ),
+            data: JSON.stringify(submitHouse),
             headers:{
                 'Authorization': "Bearer" + localStorage.getItem('token')
             },

@@ -10,6 +10,8 @@ const houseSchema = mongoose.Schema ({
     cooling: {type: String},
     heating: {type:String},
     pool: {type:String},
+    bedroom: {type:String},
+    bathroom: {type:String},
     creator: {type: mongoose.Schema.ObjectId, required: true},
     image: {
         type: String,
@@ -28,7 +30,9 @@ houseSchema.methods.serialize = function(){
         pool: this.pool,
         details: this.details,
         creator: this.creator,
-        image: this.image
+        image: this.image,
+        bedroom: this.bedroom,
+        bathroom: this.bathroom,
     }
 }
 
