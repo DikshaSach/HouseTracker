@@ -65,8 +65,8 @@ function onClickImageUpload(){
         requestHouse.get('/api/houses' + '/' + localStorage.getItem('id'), function(data){
             const houses = data;
             const editHouse = houses.find(x => x._id === edithouseid);
-            document.getElementById("house-name-test").value = editHouse.name;
-            $("#house-name-test").prop('disabled', true);
+            document.getElementById("house-name").value = editHouse.name;
+            $("#house-name").prop('disabled', true);
 
         });
     });
