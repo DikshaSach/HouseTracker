@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const {HouseLog} = require('../houses/models.js');
 const passport = require('passport');
-const HouseService = require('../service/HouseService');
+const HouseService = require('../service/houseService');
 router.get('/', function(req, res) {
     HouseLog
         .find()
