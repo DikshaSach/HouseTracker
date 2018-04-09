@@ -1,21 +1,21 @@
 var requestHouse = {
-    get: function(url, callback){
+    get: function(url, callback) {
 
         $.ajax({
             method: 'GET',
             url: url,
-            headers:{
+            headers: {
                 'Authorization': "Bearer" + localStorage.getItem('token')
             },
             success: callback,
-            error: function(err){
+            error: function(err) {
                 console.log("Theres an error");
                 console.error(err);
                 window.location = '/';
             }
         });
     },
-    post: function(url, submitHouse, callback){
+    post: function(url, submitHouse, callback) {
         console.log('Posting House');
         $.ajax({
             type: 'POST',
@@ -23,34 +23,34 @@ var requestHouse = {
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify(submitHouse),
-            headers:{
+            headers: {
                 'Authorization': "Bearer" + localStorage.getItem('token')
             },
             success: callback,
-            error: function(err){
+            error: function(err) {
                 console.log("Theres an error");
                 console.error(err);
-                
+
             }
         });
     },
-    delete: function(idParam, url, callback){
+    delete: function(idParam, url, callback) {
         console.log('Deleting House');
         $.ajax({
             type: 'DELETE',
             url: url,
             contentType: 'application/json',
-            headers:{
+            headers: {
                 'Authorization': "Bearer" + localStorage.getItem('token')
             },
             success: callback,
-            error: function(err){
+            error: function(err) {
                 console.info('Theres an error with delete');
                 console.error(err);
             }
         });
     },
-    put: function(url, editHouse, callback){
+    put: function(url, editHouse, callback) {
         $.ajax({
             type: 'PUT',
             url: url,
@@ -60,21 +60,21 @@ var requestHouse = {
                 'Authorization': "Bearer" + localStorage.getItem('token')
             },
             success: callback,
-            error: function(err){
+            error: function(err) {
                 console.info('Theres an error');
                 console.error(err);
             }
         });
-}
+    }
 }
 
 const requestRegister = {
-    post: function(url, username, password, callback){
+    post: function(url, username, password, callback) {
         $.ajax({
             type: 'POST',
             url: url,
             contentType: 'application/json',
-            data: JSON.stringify({ 
+            data: JSON.stringify({
                 username: username,
                 password: password
             }),
@@ -85,7 +85,7 @@ const requestRegister = {
             error: function(err) {
                 console.info('There is an error');
                 console.error(err);
-                
+
             }
         });
     }
@@ -93,7 +93,7 @@ const requestRegister = {
 }
 
 const requestLogin = {
-    post: function(url, username, password, callback){
+    post: function(url, username, password, callback) {
         $.ajax({
             type: 'POST',
             url: url,
@@ -105,11 +105,11 @@ const requestLogin = {
             }),
             // if successfull console log token and id
             success: callback,
-            error: function(err){
+            error: function(err) {
                 console.info('Password is Wrong');
                 console.error(err);
-               onLoginError();
-                
+                onLoginError();
+
             }
         });
     }

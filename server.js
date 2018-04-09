@@ -20,7 +20,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
   }));
-  app.use(passport.initialize());
+
+app.use(passport.initialize());
 app.use(passport.session());
 // whatfolder we use where our css files are
 app.use(express.static('public'));
@@ -96,7 +97,10 @@ app.get('/houseList/:id', isLoggedIn,  async (req, res)=>{
     res.render('houseList.ejs', {list: list,
     url});
 });
-
+app.get('/hothouses', isLoggedIn, async(req,res)=>{
+    let list = await HouseService.getHotHouses(req.params.id);
+    res.render('hothouses.ejs', {list: list, url});
+})
 app.get('/about', isLoggedIn, async (req, res)=>{
    
     url = req.params.id;
@@ -106,14 +110,7 @@ app.get('/register', (req, res) =>{
     res.render('register.ejs');
 });
 
-
-
-
-
-
-
-
-  let server;
+let server;
 
   function runServer(databaseUrl, port=PORT) {
       return new Promise((resolve, reject)=> {

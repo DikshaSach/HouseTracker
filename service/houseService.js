@@ -118,6 +118,15 @@ function HouseService() {
     });
 
 }
+    this.getHotHouses = function(){
+        return new Promise (async (resolve,reject)=>{
+            let list = HouseLog
+            .find()
+            .limit(5)
+            .exec();
+            resolve(list);
+        })
+    }
 }
 
 module.exports = new HouseService();

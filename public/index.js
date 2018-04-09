@@ -47,12 +47,12 @@ function submitHouseInfo() {
 function displayClickedHouse(houseId) {
     console.log('indispalyclickedout');
     console.log(houseId);
-    if(localStorage.getItem('token')!== null){
-   window.location = '/house/' + houseId;
-    } else{
+    if (localStorage.getItem('token') !== null) {
+        window.location = '/house/' + houseId;
+    } else {
         window.location = '/share/house/' + houseId;
     }
-  
+
 }
 
 
@@ -60,12 +60,12 @@ function onDelete() {
     $('#singleHouseInfoDiv').on('click', '.delete', function() {
         const idParam = $(this).attr('houseID');
         requestHouse.delete(idParam, '/api/houses/' + idParam, function() {
-         
+
         });
-        requestHouse.get('/api/houses' + '/' + localStorage.getItem('id'), function(data) {  
+        requestHouse.get('/api/houses' + '/' + localStorage.getItem('id'), function(data) {
             window.location = '/houseList/' + localStorage.getItem('id');
         });
-     
+
 
     });
 };
@@ -73,8 +73,8 @@ function onDelete() {
 function onEdit() {
     $('#singleHouseInfoDiv').on('click', '.edit', function() {
         $('#singleHouseInfoDiv').hide();
-       $('.close-houses-form').hide();
-       $('#close-houses-edit-form').show();
+        $('.close-houses-form').hide();
+        $('#close-houses-edit-form').show();
         $('#houses-form').show();
         $('.house-submit').hide();
         const edithouseid = $(this).attr('houseid');
@@ -111,9 +111,9 @@ function onEdit() {
 }
 
 
-function editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, detailsOfHouseEdit, garageOfHouseEdit, poolOfHouseEdit, coolingOfHouseEdit, heatingOfHouseEdit, bedroomsOfHouseEdit, bathroomsOfHouseEdit,ratingOfHouseEdit, edithouseid) {
+function editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, detailsOfHouseEdit, garageOfHouseEdit, poolOfHouseEdit, coolingOfHouseEdit, heatingOfHouseEdit, bedroomsOfHouseEdit, bathroomsOfHouseEdit, ratingOfHouseEdit, edithouseid) {
     $('.house-edit').on('click', function() {
-        
+
         const nameOfHouseEdit = $('#house-name').val();
         const priceOfHouseEdit = $('#house-price').val();
         const locationOfHouseEdit = $('#house-location').val();
@@ -153,10 +153,11 @@ function editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, deta
 
     });
 };
-function onLoginError(){
-    if($('#login-acc > div').length === 0){
+
+function onLoginError() {
+    if ($('#login-acc > div').length === 0) {
         $('#login-acc').append('<br> <div style="color:red;">Wrong Username/ Password<div>');
-    } 
+    }
 }
 
 
@@ -164,5 +165,3 @@ function onLoginError(){
 submitHouseInfo();
 onDelete();
 onEdit();
-
-

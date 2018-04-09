@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   
-	<title>House</title>
+
+    <title>House</title>
 </head>
+
 <body>
 
-
-<nav>
+    <nav>
         <%- include navbar.ejs %>
-</nav>
+    </nav>
 
-
-<div class="container-register">
-        <img class='house-image-pic' src="/images/house-outline-clipart-house-roof-hi.png"/> 
-<div class="login">
-        <form id="login-acc" action="#">
-               <h1>LOGIN</h1>
-            <input type="text" id="acc-username" name="username" placeholder="Enter User" required>
-            <br>
-            <input type="text" id="acc-password" name="password" placeholder="Enter password" required>
-            <br>
-            <button type="submit" class="login-submit">Login</button>
-            <p>Don't have an account? Register <a href="/">Here!</a></p>
-        </form>
-    </div>
+    <div class="container-register">
+        <img class='house-image-pic' src="/images/house-outline-clipart-house-roof-hi.png" />
+        <div class="login">
+            <form id="login-acc" action="#">
+                <h1>LOGIN</h1>
+                <input type="text" id="acc-username" name="username" placeholder="Enter User" required>
+                <br>
+                <input type="text" id="acc-password" name="password" placeholder="Enter password" required>
+                <br>
+                <button type="submit" class="login-submit">Login</button>
+                <p>Don't have an account? Register <a href="/">Here!</a></p>
+            </form>
+        </div>
     </div>
     <div id="demo-acc">
-            <p>
-                    <h1>Demo</h1>
-                    To login with a demo account use the credentials:<br>
-                    username: testing
-                    <br>
-                    password: 1234567890
+        <p>
+            <h1>Demo</h1> To login with a demo account use the credentials:
+            <br> username: testing
+            <br> password: 1234567890
         </p>
     </div>
-    
 
     <footer>
-            <%- include footer.ejs %>
+        <%- include footer.ejs %>
     </footer>
 
 </body>
