@@ -1,0 +1,55 @@
+[
+{
+    "name" : "Modern House",
+    "price" : "$1,191,910",
+    "location" : "124-04 hunter street, Brooklyn, NY, 11215",
+    "creator" : "5abc46efa9b3151a74b374cc",
+    "details" : "dsfdsfdsfd",
+    "rating" : "5",
+    "bedroom" : "1",
+    "bathroom" : "1",
+    "garage" : "Yes",
+    "heating" : "Central",
+    "pool" : "Yes",
+    "cooling" : "Central",
+    "image" : "https://res.cloudinary.com/dnejk6l5i/image/upload/v1523154668/eig55sic59pmlceujwgg.jpg",
+    "__v" : 0
+},
+
+
+{
+   
+    "name" : "House By Lake",
+    "price" : "$745,000",
+    "location" : "124-04 hunter street, Brooklyn, NY, 11215",
+    "creator" : "5abc46efa9b3151a74b374cc",
+    "details" : "Beautifully Presented Victorian Style Home With Granny Front Porch Leads To Open Plan Living Room, Dining Room And Eik W/ Granite Tops& Hi End Appliances Which Flows To Deck For Outdoor Entertaining & Private Flat Yard. Master Bedroom With Vaulted Ceiling, Balcony, Sit Area, Mast Bath, W/In Closet.",
+    "rating" : "5",
+    "bedroom" : "3",
+    "bathroom" : "2",
+    "garage" : "Yes",
+    "heating" : "Central",
+    "pool" : "Yes",
+    "cooling" : "Central",
+    "image" : "https://res.cloudinary.com/dnejk6l5i/image/upload/v1523157690/vmkkhlhowzylm0jhxa7e.jpg",
+    "__v" : 0
+},
+
+{
+    
+    "name" : "Modern House",
+    "price" : "$599,999",
+    "location" : "123 Abc Street Kew gardens, Ny, 11415",
+    "creator" : "5abc46efa9b3151a74b374cc",
+    "details" : "dfasdfasdfsd",
+    "rating" : "3",
+    "bedroom" : "4",
+    "bathroom" : "3",
+    "garage" : "Yes",
+    "heating" : "Central",
+    "pool" : "Yes",
+    "cooling" : "Central",
+    "image" : "http://res.cloudinary.com/dnejk6l5i/image/upload/v1522773096/house_1.svg",
+    "__v" : 0
+}
+]

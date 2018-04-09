@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 function verifyHouse(houseObj) {
-    const requiredFields = ['name', 'creator', 'location', 'price', 'details', 'garage', 'heating', 'cooling', 'pool', 'rating'];
+    const requiredFields = ['name', 'creator', 'location', 'price', 'details', 'garage', 'heating', 'cooling', 'pool', 'rating', 'bedroom', 'bathroom'];
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in houseObj)) {

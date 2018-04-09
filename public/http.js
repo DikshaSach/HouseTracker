@@ -85,7 +85,7 @@ const requestRegister = {
             error: function(err) {
                 console.info('There is an error');
                 console.error(err);
-                onRegisterError();
+                //onRegisterError();
 
             }
         });

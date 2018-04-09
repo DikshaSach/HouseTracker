@@ -7,7 +7,7 @@ body{
 
 nav{
     
-   
+   padding-bottom: 14px;
     font-size: 30px;
     border-bottom: 1px solid black;
     text-align: right; 
@@ -54,7 +54,8 @@ img.house-image{
     
     max-width: 100%;
     max-height: 100%;
-   
+   position: absolute;
+   top:0;
     margin-top: -100px;
     z-index:-1;
    border-radius: 10px;
@@ -171,18 +172,20 @@ footer{
     margin: 0 auto;
     word-wrap: break-word;
    padding-left:50px;;
+   margin-top: 50px;
 }
 .listItemHouse{
     margin-top: 10px;
     width: 30%;
     float: left;
-    height: 300px;
+    height: 285px;
     border-radius: 10px;
     margin-left: 10px;
     word-wrap: break-word; 
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
 
 }
 
@@ -258,6 +261,9 @@ margin: 0 auto;
 #single-house-id{
     margin-top: 10px;
 }
+#hot-houses-title{
+    text-align: center;
+}
 
 #single-house-name{
     
@@ -268,10 +274,10 @@ margin: 0 auto;
 }
 
 #single-house-name >span{
-    margin-top: -.5px;
+ 
 
     border-bottom: 5px solid black;
-    line-height: 49px;
+    line-height: 43px;
 }
 #single-house-price{
     float: left;
@@ -429,6 +435,7 @@ left: 200px;
     text-decoration: underline;
 }
 #images-div{
+    margin-top: 50px;
     width: 100%;
     text-align: center;
 }
@@ -491,7 +498,7 @@ left: 200px;
 }
 #houseRatingSpan{
     position: absolute;
-    top: 35px;
+    top: 8px;
     right: 9px;
 }
 .listItemHouse{
@@ -654,6 +661,9 @@ color: black;
        border: none;
         width: auto;
       }
+      #navbarLinks{
+          border-bottom: 1px solid black;
+      }
     
       #navBarLogo, #icon-title{
         left: 25%;
@@ -669,9 +679,10 @@ color: black;
         margin: 0 auto;
         border-bottom: 1px solid black;
       }
-      #links{
-
+      #hot-houses-title{
+          margin-top: 40px;
       }
+     
 
 }
 @media only screen and (max-width: 500px) {
@@ -682,16 +693,11 @@ color: black;
         margin-top: 10px;
       } 
       
-      .house-tracker{
-          padding-top: 8px;
-        font-size: 34ßpx;
-    }
+      
     #register-acc{
         top: 120px;
     }
-    div#navbarLinks{
-        font-size: 23px;
-    }
+    
     #login-acc{
         top: 120px;
     } 
@@ -710,16 +716,8 @@ color: black;
         padding-top: 13px;
       font-size: 25px;
   }
-  div#links{
-      font-size:21px;
-  }
-  .house-icon{
-      height: 25px;
-  }
-  #navbarLinks{
-      font-size: 20px;
-  }
-
+  
+ 
     #register-acc{
         top: 100px;
     } 

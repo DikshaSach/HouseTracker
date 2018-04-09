@@ -7,7 +7,7 @@ function createAcc() {
         const password = createPassword.val();
         //sending post requestion to api/users endpoint
         requestRegister.post('api/users', username, password, function() {
-
+console.log('created account');
             window.location = 'signin';
         });
         login.val('');

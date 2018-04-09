@@ -11,13 +11,13 @@ const jsonParser = bodyParser.json();
 // post request to create new user
 router.post('/', jsonParser, async (req,res)=>{
    try{
-     let userAvailable = await HouseService.isUserAvailable(req.body.username);
+     /*let userAvailable = await HouseService.isUserAvailable(req.body.username);
      if(!userAvailable){
        res.status(400).json({message:"That username is taken"});
        return;
      }
 
-     
+     */
    let User = await UserService.create(req.body);
    res.status(201).json({message: 'User has been created'});
 
