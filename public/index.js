@@ -159,7 +159,11 @@ function onLoginError() {
         $('#login-acc').append('<br> <div style="color:red;">Wrong Username/ Password<div>');
     }
 }
-
+function onRegisterError(){
+    if ($('#register-acc > div').length === 0) {
+        $('#register-acc').append('<br> <div style="color:red;">Username Taken. Please Try again<div>');
+    }
+}
 
 
 submitHouseInfo();
