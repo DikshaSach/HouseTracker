@@ -6,16 +6,6 @@ https://secure-basin-62117.herokuapp.com/
 Demo Account Credentials  
 **Username:** testing  
 **Password:** 1234567890
-## Screenshots
-
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot1.png) 
-
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot2.png)  
-
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot3.png)
-
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot4.png)  
-
 ## Technology Used
 * Node
 * Express
@@ -27,6 +17,14 @@ Demo Account Credentials
 * HTML
 * CSS
 * Cloudinary
+## Screenshots
 
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot1.png) 
+
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot2.png)  
+
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot3.png)
+
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot4.png) 
 ## Author
 Diksha Sach
