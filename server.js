@@ -2,7 +2,7 @@ require ('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-
+const HouseService = require('./service/houseService');
 
 const passport = require('passport');
 //router desctructuring assignment with renaming two variables called router
@@ -17,14 +17,14 @@ const app = express();
 
 app.use(session({
     secret: 'keyboard cat',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: false }
   }));
+  app.use(passport.initialize());
+app.use(passport.session());
 // whatfolder we use where our css files are
 app.use(express.static('public'));
 app.use('/api/houses', houseRouter);
-
 
 //CORS
 app.use(function (req, res, next) {
@@ -47,25 +47,60 @@ app.use(function (req, res, next) {
 
   const jwtAuth = passport.authenticate('jwt', {session:false});
 
-  app.get('/', (req, res)=>{
-    res.render(__dirname + '/views/index.ejs');
-
-
-
-  });
+  function isLoggedIn (req, res, next) {
+    // if req.session.token exists then user is logged in.
+    if (req.session.token) {
+      return next()
+    } else{res.redirect('/signin')}
+    // if user is not authenticated then redirect to login 
+    
+  }
 
   
-
-app.set('view engine', 'ejs');
-app.get('/signin', (req, res) =>{
-    res.render('signin.ejs');
+ 
+  
+  app.get('/', (req, res)=>{
+      console.log(req.user);
+    res.render(__dirname + '/views/index.ejs');
   });
 
-app.get('/dashboard', (req, res) =>{
-    res.render('dashboard.ejs');
+  app.get('/api/protected', jwtAuth, (req, res) => {
+    res.json({
+      data: 'rosebud'
+    });
+  });
+
+
+app.set('view engine', 'ejs');
+
+app.get('/signin', (req, res,) =>{
+    res.render('signin.ejs');
+  });
+app.get('/house/:id', isLoggedIn, async (req, res)=>{
+    let house = await HouseService.get(req.params.id);
+    res.render('house.ejs', {house: house}); 
 });
-app.get('/myaccount', (req,res)=>{
-    res.render('myaccount.ejs');
+app.get('/share/:id', async (req,res)=>{
+    let list = await HouseService.getList(req.params.id);
+    res.render('shareList.ejs', {list:list} )
+});
+
+app.get('/share/house/:id', async (req, res)=>{
+    let house = await HouseService.get(req.params.id);
+    res.render('shareHouse.ejs', {house: house}); 
+});
+
+app.get('/houseList/:id', isLoggedIn,  async (req, res)=>{
+    let list = await HouseService.getList(req.params.id);
+    url = req.params.id;
+    res.render('houseList.ejs', {list: list,
+    url});
+});
+
+app.get('/about', isLoggedIn, async (req, res)=>{
+   
+    url = req.params.id;
+    res.render('about.ejs', url);
 });
 app.get('/register', (req, res) =>{
     res.render('register.ejs');

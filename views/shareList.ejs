@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="/index.css"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<nav>
+    <%- include navbar.ejs %>
+</nav>
+
+
+
+<ul id="houseList">
+    <% if (list != null) { %>
+       <% for(var i=0; i< list.length; i++) { %>
+        <li houseID="<%= list[i].id %>" id="<%= list[i].id %>" class="listItemHouse">
+                
+                <span id="houseNameSpan"><%= list[i].name %> </span>
+                <br>
+                
+                <span id="housePriceSpan">&nbsp;<span id="bulletpoint"> &#8226; &nbsp;</span><%= list[i].price %> </span>
+                <br>
+                <span id="houseLocationSpan"> <%= list[i].location %> </span>
+                <img class="house-image" src="<%= list[i].image %>" style="height: 300px;">
+
+                </li>
+                
+       <% } %>
+        
+        <% } %>
+</ul>
+
+<script src="/index.js"></script>
+<script src="/account.js"></script>
+<script src="/clickHandlers.js"></script>
+<script src="/http.js"></script>

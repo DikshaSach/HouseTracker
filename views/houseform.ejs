@@ -1,0 +1,104 @@
+
+
+   <div id="houses-form" style="display:none;">
+        <form id="createHouse" action="#">
+            <a href="#"><img src="/images/close.png" class="close-houses-form" id="close-houses-form"></a>
+            <a href="#"><img src="/images/close.png" class="close-houses-form" id="close-houses-edit-form" style="display:none;"> </a>
+           <!-- <input type="image" src="images/close.png" class="close-houses-form">-->
+            <h1>Fill Out the details below:</h1>
+            <span>House Name</span>
+           <input type="text" id="house-name" name="house-name">
+           <br>
+           <br>
+           <span>House Price</span>
+           <input type="text" id="house-price" name="house-price">
+           <br>
+           <br>
+           <span>House Location</span>
+           <input type="text" id="house-location" name="house-location">
+           <br>
+           <br>
+           <span>House Details</span>
+           <textarea type="text" id="house-details" name="house-details"></textarea>
+           <br> 
+           <br>
+           <span>
+                <section>
+                    <label>How many bedrooms?</label>
+                    <select id="house-bedroom" class="house-bedroom" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                    </section>
+                    </span>
+           <br>
+           <br>
+           <span>
+                <section>
+                    <label>How many bathrooms?</label>
+                    <select id="house-bathroom" class="house-bathroom" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                    </section>
+                    </span>
+           <br>
+           <br>
+           <span>
+            <section>
+                <label>Does it Have a garage?</label>
+                <select id="house-garage" class="house-garage" required><option value="Yes">Yes</option>
+                <option value="No">No</option></select>
+                </section>
+                </span>
+                <br>
+            <span>
+            <section>
+                <label>What Kind Of cooling</label>
+                <select id="house-cooling" class="house-cooling" required>
+                    <option value="Central">Central</option>
+                <option value="Other">Other</option></select>
+            </section>
+            </span>
+            <br>
+            <span>
+            <section>
+                <label>What kind of heating</label>
+                <select id="house-heating" class="house-heating" required>
+                    <option value="Central">Central</option>
+                <option value="Other">Other</option></select>
+            </section>
+            </span>
+            <br>
+            <span>
+            <section>
+                <label>Does it Have a pool?</label>
+                <select id="house-pool" class="house-pool" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option></select>
+            </section>
+            </span>
+            <br>
+            <span>
+                    <section>
+                            <label>Rating</label>
+                            <select id="house-rating" class="house-rating" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        </section>
+            </span>
+           <br>  
+           <button type="submit" class="house-submit">Submit House</button>
+           <button type="button" class="house-edit">Edit house</button>   
+        </form>
+     </div>

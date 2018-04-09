@@ -1,65 +1,70 @@
 
 function onClickCloseHousesForm(){
-    $('.close-houses-form').on('click', function(){
+    $('#close-houses-form').on('click', function(){
         $(this).closest('form').find("input[type=text], textarea").val("");
-        $('#houses-form').hide();
-        $('.closediv').show();
-        $('.upload-bttn').show();
-        $('.delete').show();
-        $('#singleHouseInfoDiv').hide();
-        $('#dashboard').show();
-        $('#house-list').show();
-        $('#adding-houses').show();
+       window.location = '/houseList/' + localStorage.getItem('id');
+      
     });
+}
+function onClickHouseLink(){
+    $('.houses').on('click', function(){
+        window.location.href = '/houseList/' + localStorage.getItem('id'); 
+    })
+}
+function onClickCloseHousesFormEdit(){
+    $('#close-houses-edit-form').on('click', function(){
+        $(this).closest('form').find("input[type=text], textarea").val("");
+        $('#singleHouseInfoDiv').show();
+        $('.close-houses-form').hide();
+        $('#close-houses-edit-form').hide();
+         $('#houses-form').hide();
+         $('#sharelink').show();
+    })
 }
 function onClickAddingHouses(){
     $('#adding-houses').on('click', function(){
-        $('#houses-form').show();
-       $('.house-edit').hide();
-       $('#dashboard').hide();
-       $('#house-list').hide();
-       $('#adding-houses').hide();
-      
-    
-    
+      $('#houses-form').show();
+      $('#houseList').hide();
+      $('#adding-houses').hide();
+      $('#sharelink').hide();
+     $('.house-edit').hide();
     });
 }
+
 function onClickClose(){
     $('#singleHouseInfoDiv').on('click', '.closediv', function(){
-        requestHouse.get('/api/houses' + '/' + localStorage.getItem('id'), function(data) {
-            renderHouses(data);
-            console.log('Rendering new Data');
-            $('#house-list').show();
-            $('#singleHouseInfoDiv').hide();
-        });
+        if(localStorage.getItem('token')!== null){
+            window.location.href = '/houseList/' + $(this).attr('creatorId'); 
+        }else{
+            window.location.href = '/share/' +$(this).attr('creatorId');
+        }
+        
        
-        $('#adding-houses').show();
     });
+}
+function onClickCopy(){
+    $('.copy-button').on('click', function(){
+        $('.copy-button').html('Copied!'); 
+    })
 }
 
 function onClickHouse(){  
     $('#houseList').on('click', 'li', function(){
-        var houseId = $(this).attr('id');  
+        var houseId = $(this).attr('id'); 
         return displayClickedHouse(houseId); 
+
        
     });
 }
 function onclickCloseImageForm(){
     $('.house-upload-form-close').on('click', function(){
         $('#imageFormDiv').hide();
-        $('.closediv').show();
-        $('.edit').show();
-        $('.delete').show();
         $('#singleHouseInfoDiv').show();
     });
 };
 function onClickImageUpload(){
     $('#singleHouseInfoDiv').on('click', '.upload-bttn', function() {
         $('#imageFormDiv').show();
-        $('.closediv').hide();
-        $('.upload-bttn').show();
-        $('.delete').hide();
-        $('.edit').hide();
         $('#singleHouseInfoDiv').hide();
         const edithouseid = $(this).attr('houseID');
         requestHouse.get('/api/houses' + '/' + localStorage.getItem('id'), function(data){
@@ -68,16 +73,17 @@ function onClickImageUpload(){
             console.log(editHouse.name);
            $("#house-name-for-image").val(editHouse.name);
             $("#house-name-for-image").prop('disabled', true);
-
         });
     });
 
 }
 
-
+onClickCloseHousesFormEdit();
 onclickCloseImageForm();
 onClickCloseHousesForm();
 onClickAddingHouses();
+onClickHouseLink()
 onClickClose();
 onClickImageUpload();
 onClickHouse();
+onClickCopy();

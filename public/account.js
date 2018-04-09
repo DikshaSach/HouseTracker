@@ -7,6 +7,7 @@ function createAcc(){
     const password = createPassword.val();
     //sending post requestion to api/users endpoint
     requestRegister.post('api/users', username, password, function(){
+        
         window.location = 'signin';
     });
     login.val('');
@@ -18,11 +19,14 @@ function logInFunc(username, password){
     console.log(username, password);
     // post request to api/auth/login endpoint 
 
-    requestRegister.post('api/auth/login', username, password, function(resultData){
+    requestLogin.post('api/auth/login', username, password, function(resultData){
         localStorage.setItem('token', resultData.authToken);
         localStorage.setItem('id', resultData.userID);
         console.log(resultData);
-        window.location = 'dashboard';
+        var id = resultData.userID;
+        
+        window.location= 'houseList/'+ id;
+       
     })
 }
 

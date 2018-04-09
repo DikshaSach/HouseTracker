@@ -2,7 +2,7 @@ body{
     padding: 0;
     margin: 0;
     font-family: 'Josefin Slab', serif;
-    font-family: 'QuickSand', sans-serif;
+  
 }
 
 nav{
@@ -41,7 +41,7 @@ nav{
 float: right;
 }
 #house-list > h1{
-    font-family: 'Josefin Slab', serif;
+    
     width: 100%;
     text-align: center;
 }
@@ -54,7 +54,7 @@ img.house-image{
     
     max-width: 100%;
     max-height: 100%;
-    position: relative;
+   
     margin-top: -100px;
     z-index:-1;
    border-radius: 10px;
@@ -64,9 +64,20 @@ img.house-image{
     margin:auto;
    
 }
-#imageDiv{
-    
-    margin-top: -36px;
+img.house-image-pic{
+    max-width: 100%;
+    max-height: 100%;
+   
+    margin-top: -100px;
+    z-index:-1;
+   border-radius: 10px;
+    width: auto;
+    height: auto;
+    display:block;
+    margin:auto;
+}
+.houses{
+    text-decoration: none;
 }
 
 #register-acc{
@@ -118,6 +129,7 @@ a.about-page{
 #links{
     padding-top: 15px;
     margin-right: 5%;
+    font-size: 25px;
 }
 #icon-title{
    
@@ -145,6 +157,7 @@ footer{
     margin: 0 auto;
 }
 #houseList{
+    margin-top: 25px;
     width: 90%;
     list-style-type: none;
     margin: 0 auto;
@@ -158,8 +171,14 @@ footer{
     height: 300px;
     border-radius: 10px;
     margin-left: 10px;
-    word-wrap: break-word;  
+    word-wrap: break-word; 
+    overflow: hidden;
+    white-space: nowrap;
+
 }
+
+
+
 #singleHouseInfo{
     position: absolute;
     background-color: white;
@@ -177,16 +196,19 @@ img#single-house-picture{
     width: 70%;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
 
 
 }
 div#image-div{
-    margin-top: -35px; 
+    margin-top: -35px;
 }
 #image-div{
     margin-top: -50px;
     margin: 0 auto;
+}
+img.house-image{
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
 }
 
 #single-house-location{
@@ -196,12 +218,13 @@ div#image-div{
     margin-bottom: 20px;
     position: relative;
 }
+
 #single-house-details{
     float: left;
     width: 50%;
     word-wrap: break-word;
 }
-#details-price-container, #single-house-name, #single-house-location, #house-features, #single-house-id, #single-house-bedroom-bathroom{
+#details-price-container, #single-house-name, #single-house-location, #house-features, #single-house-id, #single-house-bedroom-bathroom, #single-house-rating{
     
 width: 70%;
 margin: 0 auto;
@@ -223,6 +246,7 @@ margin: 0 auto;
 #single-house-location{
     font-size: 18px;
     color: #494949;
+    padding-bottom: 20px;
 }
 #single-house-id{
     margin-top: 10px;
@@ -230,7 +254,7 @@ margin: 0 auto;
 
 #single-house-name{
     
-    font-family: 'Raleway', 'sans-serif';
+    
     font-weight: 500;
     font-size: 40px;
     border-bottom: 2px solid black;
@@ -386,11 +410,36 @@ left: 200px;
    
 }
 
-#page-info>p{
-    font-family: 'Raleway', 'sans-serif';
+.house-submit-upload, .house-submit,.house-upload-form-close {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 23px;
+    font-size: 15px;
 }
 
 
+#imageFormDiv > h1{
+    text-decoration: underline;
+}
+#images-div{
+    width: 100%;
+    text-align: center;
+}
+#images-div >img{
+    width: 80%;
+    
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+#images-div > h1{
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    font-size: 30px;
+    padding-top: 10px;
+}
 
 
 
@@ -433,14 +482,10 @@ left: 200px;
     
 
 }
-#houseNameSpan{
+#houseRatingSpan{
     position: absolute;
-    top:0;
-    color: black;
-    font-size: 30px;
-    width: 100%;
-    text-align: center;
-    
+    top: 35px;
+    right: 9px;
 }
 .listItemHouse{
     position: relative;
@@ -483,6 +528,46 @@ margin-top: 100px;
     margin-bottom: 10px;
     margin-top: -30px;
 }
+#sharelink{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+#sharelink > h1 {
+    display: inline-block;
+    width: 80%;
+    font-size: 30px;
+    margin-top: 20px;
+}
+#share-text{
+    width: 50%;  
+    margin-bottom: 50px;
+    border: 1px solid black;
+    font-size: 20px;
+}
+#share-link-copy:hover{
+background-color: white;
+color: black;
+}
+#share-link-copy{
+    padding-top: 5px;
+    padding-bottom: 2px;
+    margin-left: 5px;
+    background-color: white;
+    font-size: 15px;
+    border: 2px solid black;
+}
+#share-bttn{
+    width: 55%;
+    height: 30px;
+    background-color: white;
+    border: 1.5px solid black;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 12px;
+    font-size: 20px;
+}
 @media only screen and (max-width: 900px) {
     .listItemHouse{
         width: 45%;  
@@ -495,7 +580,9 @@ margin-top: 100px;
         width: 45%;  
       
       } 
-      
+      #images-div > h1{
+          font-size: 18px;
+      }
       #single-house-price p{
           padding-top: 10px;
           font-size: 30px;
@@ -553,6 +640,30 @@ margin-top: 100px;
     #houseList{
         padding-left: 0;
     }
+    nav, #dashboard-nav{
+        margin-left: auto;
+        margin-right: auto;
+       border: none;
+        width: auto;
+      }
+    
+      #navBarLogo, #icon-title{
+        left: 25%;
+    
+    position: relative; 
+      }
+      #links{
+          font-size: 24px;
+      }
+      #navbarLinks, #links{
+        clear: both;
+        text-align: center;
+        margin: 0 auto;
+        border-bottom: 1px solid black;
+      }
+      #links{
+
+      }
 
 }
 @media only screen and (max-width: 500px) {
@@ -562,16 +673,23 @@ margin-top: 100px;
         margin-left: 10%;
         margin-top: 10px;
       } 
+      
       .house-tracker{
           padding-top: 8px;
-        font-size: 20px;
+        font-size: 34ßpx;
     }
     #register-acc{
         top: 120px;
     }
+    div#navbarLinks{
+        font-size: 23px;
+    }
     #login-acc{
         top: 120px;
     } 
+    div#links{
+        font-size: 24px;
+    }
 }
 @media only screen and (max-width: 400px) {
     .listItemHouse{
@@ -582,7 +700,10 @@ margin-top: 100px;
       } 
       .house-tracker{
         padding-top: 13px;
-      font-size: 18px;
+      font-size: 25px;
+  }
+  div#links{
+      font-size:21px;
   }
   .house-icon{
       height: 25px;

@@ -11,13 +11,7 @@ const jsonParser = bodyParser.json();
 // post request to create new user
 router.post('/', jsonParser, async (req,res)=>{
    try{
-       /*
-    let usernameAvailability = await this.isUserAvailable(req.body.username);
-    if (!usernameAvailability) {
-        res.status(400).json({message: "Please ensure user names are available and not the same"}); 
-    return;
-    }
-    */
+     
    let User = await UserService.create(req.body);
    res.status(201).json({message: 'User has been created'});
 

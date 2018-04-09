@@ -4,10 +4,14 @@ var requestHouse = {
         $.ajax({
             method: 'GET',
             url: url,
+            headers:{
+                'Authorization': "Bearer" + localStorage.getItem('token')
+            },
             success: callback,
             error: function(err){
                 console.log("Theres an error");
                 console.error(err);
+                window.location = '/';
             }
         });
     },
@@ -26,6 +30,7 @@ var requestHouse = {
             error: function(err){
                 console.log("Theres an error");
                 console.error(err);
+                
             }
         });
     },
@@ -33,7 +38,7 @@ var requestHouse = {
         console.log('Deleting House');
         $.ajax({
             type: 'DELETE',
-            url: 'api/houses/'+ idParam,
+            url: url,
             contentType: 'application/json',
             headers:{
                 'Authorization': "Bearer" + localStorage.getItem('token')
@@ -88,7 +93,7 @@ const requestRegister = {
 }
 
 const requestLogin = {
-    post: function(url, username, passworld, callback){
+    post: function(url, username, password, callback){
         $.ajax({
             type: 'POST',
             url: url,
@@ -103,7 +108,8 @@ const requestLogin = {
             error: function(err){
                 console.info('Password is Wrong');
                 console.error(err);
-                alert('Wrong password');
+               onLoginError();
+                
             }
         });
     }

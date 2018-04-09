@@ -1,11 +1,11 @@
+/*
 $.ajax({
     method: 'GET',
     url: '/api/houses' + '/' + localStorage.getItem('id'),
-    success: response =>{
-        renderHouses(response);
-        
+    success: response =>{   
     }
 });
+*/
 
 function uploadImage(){
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dnejk6l5i/upload';
@@ -63,9 +63,10 @@ function putrequest(thisIsHouseId, imageLink){
     console.log('in putrequest');
     const imageObj = {image: imageLink };
     requestHouse.put('/api/houses' + '/' + thisIsHouseId, imageObj, function(){
-        getHouses();
+     
+        displayClickedHouse(thisIsHouseId);
     });
-    displayClickedHouse(thisIsHouseId);
+    
   
     
     $('#singleHouseInfoDiv').show();

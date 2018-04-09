@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const {HouseLog} = require('../houses/models.js');
 const passport = require('passport');
 const HouseService = require('../service/houseService');
+
 router.get('/', function(req, res) {
     HouseLog
         .find()
@@ -65,5 +66,11 @@ router.put('/:id', jsonParser, async (req, res)=>{
     
 
 });
+
+
+
+
+
+
 
 module.exports = router;

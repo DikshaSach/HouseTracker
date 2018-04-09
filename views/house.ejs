@@ -1,0 +1,72 @@
+
+<link rel="stylesheet" type="text/css" href="/index.css"/>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500|Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<% if (house != null) { %>
+  
+    <section>
+            <%- include houseform.ejs %>
+    </section> 
+    <section>
+            <%- include imageForm.ejs %>
+    </section> 
+
+
+
+  
+  <div id="singleHouseInfoDiv">
+    <div id="bttnsDiv">
+            <input type="image" src="/images/close.png" class="closediv" houseID="<%= house[0]._id %>" creatorID="<%= house[0].creator %>" id="<%= house[0]._id %>">
+            <input type="image" src="/images/edit.png" class="edit" houseID="<%= house[0]._id %>" id="<%= house[0]._id %>">
+            <input type="image" src="/images/delete.png" class="delete" houseID="<%= house[0]._id %>" id="<%= house[0]._id %>">
+            <input type="image" src="/images/uploadd.png" class="upload-bttn" houseID="<%= house[0]._id %>" id="<%= house[0]._id %>">
+           
+            </div>
+            <div id="single-house-name"  class="detailsOfHouse"><span><%= house[0].name %><span></div>
+            <div id="single-house-location"  class="detailsOfHouse"><%= house[0].location %> </div>
+            <br>     
+           <br>
+           <div id="image-div">
+            <img id="single-house-picture" class="detailsOfHouse" src="<%= house[0].image %>"/>
+         </div>
+           <div id="single-house-id"  class="detailsOfHouse">ID: <%= house[0].id %> </div>
+           <div id="single-house-rating"  class="detailsOfHouse"><% for(var y=0; y< house[0].rating; y++) { %>
+                <img src="/images/heart.png" class="heart-image" style="height: 25px;">     
+                         <% } %>
+                 </span></div>
+           <div id="single-house-location-body"  class="detailsOfHouse"><%= house[0].location %></div>
+           <div id="single-house-bedroom-bathroom"><%= house[0].bedroom %> Bedrooms  &#8226;  <%= house[0].bathroom %> Bathrooms </div>
+           <br>
+           <div id="details-price-container">
+           <div id="single-house-details"  class="detailsOfHouse"> <h1>Details</h1><p><%= house[0].details %></p> </div>
+      
+           <div id="single-house-price" class="detailsOfHouse"> <h1>For Sale</h1><p><%= house[0].price %></p></div>
+           </div>
+           <br>
+           <div id="house-features">
+           <h1 id="features">Features: </h1>
+           <div id="features-cont">
+           <div id="single-house-garage"  class="features detailsOfHouse"><span>Garage: <br><img id="garage-image" src="/images/garage.png" ></span>&nbsp;<%= house[0].garage %> </div>
+           <div id="single-house-pool"  class="features detailsOfHouse"><span>Pool: <br> <img id="pool-image" src="/images/pool.png"> </span>&nbsp;<%= house[0].pool %> </div>
+           <div id="single-house-cooling"  class="features detailsOfHouse"><span>Cooling:<br> <img id="cooling-image" src="/images/cooling.png"> </span>&nbsp;<%= house[0].cooling %> </div>
+           <div id="single-house-heating"  class="features detailsOfHouse"><span>Heating:<br> <img id="heating-image" src="/images/heating.png"> </span>&nbsp;<%= house[0].heating %> </div>
+          </div>
+           </div>
+          </div>
+    
+  <% } %>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/index.js"></script>
+<script src="/account.js"></script>
+<script src="/clickHandlers.js"></script>
+<script src="/http.js"></script>
+<script src="/dashboard.js" defer></script>
+
+
+
+ 
+      
+   

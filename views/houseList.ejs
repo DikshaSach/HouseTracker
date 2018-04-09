@@ -1,0 +1,69 @@
+<link rel="stylesheet" type="text/css" href="/index.css"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<div id="dashboard-nav">
+    <div id="icon-title"> <a class="house-icon" href="/">
+    <img class="house-icon" src="/images/houses_icon.png"></a>
+    <h1 class="house-tracker">House Tracker</h1></div>
+        
+           <div id="links">
+                <a href="/about" class="about-page">About &#8226; </a>
+                <a href="#"class="logOut">LogOut</a></div>
+        
+</div>
+
+   
+<section>
+        <%- include houseform.ejs %>
+</section>  
+
+
+<div id="add-house">
+<input type="image" src="/images/add.png" id="adding-houses">
+</div>
+
+<ul id="houseList">
+        <% if (list != null) { %>
+        <% for(var i=0; i< list.length; i++) { %>
+        <li houseID="<%= list[i].id %>" id="<%= list[i].id %>" class="listItemHouse">
+                <span id="houseRatingSpan">
+        <% for(var y=0; y< list[i].rating; y++) { %>
+       <img src="/images/heart.png" class="heart-image" style="height: 25px;">     
+                <% } %>
+        </span>
+
+
+        <br>
+                    
+        <span id="housePriceSpan">&nbsp;<span id="bulletpoint"> &#8226; &nbsp;</span><%= list[i].price %> </span>
+        <br>
+        <span id="houseLocationSpan"> <%= list[i].location %> </span>
+        <img class="house-image" src="<%= list[i].image %>" style="height: 300px;">
+        </li>
+        <% } %>
+       
+        <% } %>
+</ul>
+
+
+<% if (url != null) { %>
+<div id="sharelink" >
+        <h1>Share with your friends:</h1>
+        <input type="text"  id="share-text" value="www.localhost:8080/share/<%= url %>" >
+        <button class="copy-button" id="share-link-copy" data-clipboard-action="copy" data-clipboard-target="#share-text">Copy</button>
+</div>
+<% } %>
+
+<script src="/index.js"></script>
+<script src="/account.js"></script>
+<script src="/clickHandlers.js"></script>
+<script src="/http.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
+<script type="text/javascript">
+        new Clipboard('.copy-button');
+</script>
+
+

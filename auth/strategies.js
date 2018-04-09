@@ -34,6 +34,7 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
             }
             return callback(err, false);
         });
+        
 });
 // defines where it should find JWT in our API
 const jwtStrategy = new JwtStrategy(

@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const houseSchema = mongoose.Schema ({
     name: {type: String, required: true},
     price: {type: String},
-    location: {type: String},  
+    location: {type: String}, 
+    rating: {type:String},
     details: {type: String},
     garage: {type:String},
     cooling: {type: String},
@@ -29,6 +30,7 @@ houseSchema.methods.serialize = function(){
         heating: this.heating,
         pool: this.pool,
         details: this.details,
+        rating: this.rating,
         creator: this.creator,
         image: this.image,
         bedroom: this.bedroom,
