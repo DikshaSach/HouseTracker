@@ -626,6 +626,9 @@ color: black;
 #navbarLinks{
     font-size: 25px;
 }
+nav{
+    padding-bottom: 52px;
+}
 nav, #dashboard-nav{
     margin-left: auto;
     margin-right: auto;
