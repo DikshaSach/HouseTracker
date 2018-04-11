@@ -17,7 +17,7 @@ function tearDownDb() {
     console.warn('Deleting database!');
     return mongoose.connection.db.dropDatabase();
 }
-
+/*
 const createPost = {
     name: "Test",
     price: '$1',
@@ -44,6 +44,7 @@ const updatePost = {
     pool: "YesEdit",
     creator: "41224d776a326fb40f000001"
 }
+*/
 function tearDownDb() {
     console.warn('Deleting database!');
     return mongoose.connection.db.dropDatabase();
@@ -88,6 +89,66 @@ describe('get endpoint', function(){
             expect(res.body).to.be.a('array');
             expect(res.body).to.have.lengthOf.at.least(1);
         })
+    });
+    describe('POST endpoint', function() {
+        it('should add a new House post', function(done) {
+            
+        const newPost = {
+            "name": "house99",
+            "price": "$900,0000",
+            "location": "1 Crown Ave Huntington, NY 1174dfsdf3",
+            "creator": "5abc46efa9b3151a74b374cc",
+            "details": "Trains.",
+            "garage": "Yes",
+            "heating": "Central",
+            "pool": "Yes",
+            "cooling": "Other",
+           "rating": "5",
+            "bathroom": "3",
+            "bedroom": "3"
+        }
+
+        return chai.request(app)
+            .post('/api/houses')
+            .set('Authorization', 'Bearer ${user_token}')
+            .send(newPost)
+            .then(function(res) {
+                expect(res).to.be.status(201);
+                expect(res).to.be.json;
+                expect(res.body).to.be.a('object');
+                expect(res.body.name).to.equal(newPost.name);
+                expect(res.body.creator).to.equal(newPost.creator);
+                expect(res.body.location).to.equal(newPost.location);
+                expect(res.body.price).to.equal(newPost.price);
+                expect(res.body.details).to.equal(newPost.details);
+                expect(res.body.garage).to.equal(newPost.garage);
+                expect(res.body.heating).to.equal(newPost.heating);
+                expect(res.body.cooling).to.equal(newPost.cooling);
+                expect(res.body.pool).to.equal(newPost.pool);
+                expect(res.body.rating).to.equal(newPost.rating);
+                expect(res.body.bedroom).to.equal(newPost.bedroom);
+                expect(res.body.bathroom).to.equal(newPost.bathroom);
+               return HouseLog.findById(res.body._id);
+            })
+
+    // we retrieve new post from the db and compare its data to the data we sent over
+        .then(function(post) {
+            expect(post.creator.toString()).to.equal(newPost.creator);
+            expect(post.details).to.equal(newPost.details);
+            expect(post.name).to.equal(newPost.name);
+            expect(post.price).to.equal(newPost.price);
+            expect(post.bedroom).to.equal(newPost.bedroom);
+            expect(post.bathroom).to.equal(newPost.bathroom);
+            expect(post.location).to.equal(newPost.location);
+            expect(post.garage).to.equal(newPost.garage);
+            expect(post.heating).to.equal(newPost.heating);
+            expect(post.cooling).to.equal(newPost.cooling);
+            expect(post.pool).to.equal(newPost.pool);
+            expect(post.rating).to.equal(newPost.rating);
+            
+            });
+            
+        });
     });
     describe('DELETE endpoint', function() {
         it('should delete a sleep log post', function() {
@@ -138,66 +199,7 @@ describe('get endpoint', function(){
             });
             });
         });
-        describe('POST endpoint', function() {
-            it('should add a new House post', function() {
-            const newPost = {
-                name: "Testedit",
-                creator: "5abc46efa9b3151a74b374cc",
-                location: "123 abc st NY, 11415",
-                price: '$1',
-                details: "Testing detailsedit",
-                garage: "Yes",
-                heating: "central",
-                cooling: "central",
-                bedroom: "1",
-                bathroom: "1",
-                pool: "Yes",
-                rating: "2",
-                
-            }
-    
-            return chai.request(app)
-                .post('/api/houses')
-                .set('Authorization', `Bearer ${ user_token }`)
-                .send(newPost)
-                .then(function(res) {
-                    expect(res).to.be.status(201);
-                    expect(res).to.be.json;
-                    expect(res.body).to.be.a('object');
-                    expect(res.body).to.include.keys('name', 'creator', 'location', 'price', 'details', 'garage', 'heating', 'cooling', 'pool', 'rating', 'bedroom', 'bathroom');
-                    expect(res.body.name).to.equal(newPost.name);
-                    expect(res.body.creator).to.equal(newPost.creator);
-                    expect(res.body.location).to.equal(newPost.location);
-                    expect(res.body.price).to.equal(newPost.price);
-                    expect(res.body.details).to.equal(newPost.details);
-                    expect(res.body.garage).to.equal(newPost.garage);
-                    expect(res.body.heating).to.equal(newPost.heating);
-                    expect(res.body.cooling).to.equal(newPost.cooling);
-                    expect(res.body.pool).to.equal(newPost.pool);
-                    expect(res.body.rating).to.equal(newPost.rating);
-                    expect(res.body.bedroom).to.equal(newPost.bedroom);
-                    expect(res.body.bathroom).to.equal(newPost.bathroom);
-                    return HouseLog.findById(res.body._id);
-                })
-    
-        // we retrieve new post from the db and compare its data to the data we sent over
-            .then(function(post) {
-                expect(post.creator.toString()).to.equal(newPost.creator);
-                expect(post.details).to.equal(newPost.details);
-                expect(post.name).to.equal(newPost.name);
-                expect(post.price).to.equal(newPost.price);
-                expect(post.bedroom).to.equal(newPost.bedroom);
-                expect(post.bathroom).to.equal(newPost.bathroom);
-                expect(post.location).to.equal(newPost.location);
-                expect(post.garage).to.equal(newPost.garage);
-                expect(post.heating).to.equal(newPost.heating);
-                expect(post.cooling).to.equal(newPost.cooling);
-                expect(post.pool).to.equal(newPost.pool);
-                expect(post.rating).to.equal(newPost.rating);
-                
-                });
-            });
-        });
+        
     
     
 });
