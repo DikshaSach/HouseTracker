@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const HouseService = require('./service/houseService');
-
+const authService = require('./service/authService');
 const passport = require('passport');
 //router desctructuring assignment with renaming two variables called router
 const {router: usersRouter} = require('./users');
@@ -51,12 +51,16 @@ app.use(function (req, res, next) {
   function isLoggedIn (req, res, next) {
     // if req.session.token exists then user is logged in.
     if (req.session.token) {
-      return next()
-    } else{res.redirect('/signin')}
-    // if user is not authenticated then redirect to login 
-    
+        let decoded = authService.decodeAuthToken(req.session.token)
+        if (decoded === null){
+            res.redirect('/signin');
+        }
+        req.user = decoded.user;
+        return next()
+    } else{
+        res.redirect('/signin'); 
+    }
   }
-
   
  
   
@@ -65,13 +69,6 @@ app.use(function (req, res, next) {
     res.render(__dirname + '/views/index.ejs');
   });
 
-  app.get('/api/protected', jwtAuth, (req, res) => {
-    res.json({
-      data: 'rosebud'
-    });
-  });
-
-
 app.set('view engine', 'ejs');
 
 app.get('/signin', (req, res,) =>{
@@ -79,23 +76,23 @@ app.get('/signin', (req, res,) =>{
   });
 app.get('/house/:id', isLoggedIn, async (req, res)=>{
     let house = await HouseService.get(req.params.id);
+    if(req.user.id === house[0].creator.toString()){
     res.render('house.ejs', {house: house}); 
-});
-app.get('/share/:id', async (req,res)=>{
-    let list = await HouseService.getList(req.params.id);
-    res.render('shareList.ejs', {list:list} )
-});
-
-app.get('/share/house/:id', async (req, res)=>{
-    let house = await HouseService.get(req.params.id);
-    res.render('shareHouse.ejs', {house: house}); 
+    } else{
+        res.render('shareHouse.ejs', {house: house});
+    }
 });
 
 app.get('/houseList/:id', isLoggedIn,  async (req, res)=>{
     let list = await HouseService.getList(req.params.id);
     url = req.params.id;
-    res.render('houseList.ejs', {list: list,
-    url});
+    if(req.params.id === req.user.id || req.user.id === list[0].creator.toString()){
+        res.render('houseList.ejs', {list: list,
+            url});
+    }
+    else{
+        res.render('shareList.ejs', {list: list});
+    }
 });
 app.get('/hothouses', isLoggedIn, async(req,res)=>{
     let list = await HouseService.getHotHouses(req.params.id);

@@ -7,16 +7,9 @@ const jwt = require('jsonwebtoken');
 
 const config = require('../config');
 const router = express.Router();
+const authService = require('../service/authService');
 // create our JWT and including info about user in payload
-const createAuthToken = user => {
-    // create a signed JWT
-    //first object contains info on user
-    return jwt.sign({user}, config.JWT_SECRET, {
-        subject: user.username,
-        expiresIn: config.JWT_EXPIRY,
-        algorithm: 'HS256'
-    });
-};
+
 // using strategy created in endpoint
 // this returns a middleware function and sores ref to middleware function in a variable and passes it to 
 // sessions to false to stop passport from adding session cookies
@@ -24,7 +17,8 @@ const createAuthToken = user => {
 const localAuth = passport.authenticate('local', {session: false});
 router.use(bodyParser.json());
 router.post('/login', localAuth, (req, res) => {
-    const authToken = createAuthToken(req.user.serialize());
+    const authToken = authService.createAuthToken(req.user.serialize());
+    let decoded = authService.decodeAuthToken(authToken);
     req.session.token = authToken;
     res.json({authToken, userID: req.user._id});
 });

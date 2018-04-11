@@ -156,12 +156,13 @@ function editHouses(nameOfHouseEdit, priceOfHouseEdit, locationOfHouseEdit, deta
 
 function onLoginError() {
     if ($('#login-acc > div').length === 0) {
-        $('#login-acc').append('<br> <div style="color:red;">Wrong Username/ Password<div>');
+       $('#login-acc').append('<br> <div style="color:red;">Wrong Username/ Password<div>');
     }
 }
 function onRegisterError(){
     if ($('#register-acc > div').length === 0) {
         $('#register-acc').append('<br> <div style="color:red;">Username Taken. Please Try again<div>');
+        console.log('Username Taken.')
     }
 }
 
