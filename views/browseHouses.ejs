@@ -3,7 +3,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <body>
-    <%- include navbar.ejs %>
+    <nav>
+        <div id="navBarLogo">
+            <a class="house-icon" href="/" src="/images/houses_icon.png">
+                <img class="house-icon" src="/images/houses_icon.png">
+            </a>
+            <h1 class="house-tracker">House Tracker</h1>
+        </div>
+        <div id="navbarLinks">
+            <a href="/" class="home">Home &#8226;</a>
+            <a href="/signin" class="sign-in">SignIn &#8226; </a>
+            <a href="/register" class="register">Register</a> 
+            </div>
+            
+    </nav>
     <div><h1 style="text-align: center;">Houses Other Users Are looking at!</h1></div>
     <ul id="houseList">
         <% if (list != null) { %>
