@@ -47,11 +47,10 @@ function submitHouseInfo() {
 function displayClickedHouse(houseId) {
     console.log('indispalyclickedout');
     console.log(houseId);
-    if (localStorage.getItem('token') !== null) {
+    
         window.location = '/house/' + houseId;
-    } else {
-        window.location = '/share/house/' + houseId;
-    }
+    
+    
 
 }
 

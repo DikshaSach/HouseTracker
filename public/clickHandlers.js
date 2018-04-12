@@ -43,11 +43,8 @@ function onClickHotHouses() {
 
 function onClickClose() {
     $('#singleHouseInfoDiv').on('click', '.closediv', function() {
-        if (localStorage.getItem('token') !== null) {
             window.location.href = '/houseList/' + $(this).attr('creatorId');
-        } else {
-            window.location.href = '/share/' + $(this).attr('creatorId');
-        }
+       
 
 
     });

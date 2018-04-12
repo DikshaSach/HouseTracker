@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
             res.redirect('/signin');
         }
         req.user = decoded.user;
-        return next()
+        return next();
     } else{
         res.redirect('/signin'); 
     }
@@ -65,7 +65,6 @@ app.use(function (req, res, next) {
  
   
   app.get('/', (req, res)=>{
-      console.log(req.user);
     res.render(__dirname + '/views/index.ejs');
   });
 
@@ -76,23 +75,37 @@ app.get('/signin', (req, res,) =>{
   });
 app.get('/house/:id', isLoggedIn, async (req, res)=>{
     let house = await HouseService.get(req.params.id);
-    if(req.user.id === house[0].creator.toString()){
-    res.render('house.ejs', {house: house}); 
+    if(req.user === undefined){
+        res.render('shareHouse.ejs', {house: house});
+    }else if(req.user.id === house[0].creator.toString()){
+        res.render('house.ejs', {house: house});
     } else{
         res.render('shareHouse.ejs', {house: house});
     }
 });
 
-app.get('/houseList/:id', isLoggedIn,  async (req, res)=>{
+app.get('/houseList/:id',  isLoggedIn, async (req, res)=>{
     let list = await HouseService.getList(req.params.id);
     url = req.params.id;
+    if(req.user === undefined){
+        res.render('shareList.ejs', {list: list});
+    }
+    else if(req.params.id === req.user.id || req.user.id === list[0].creator.toString())
+    {
+        res.render('houseList.ejs', {list: list,
+            url});
+        }
+        else{
+            res.render('shareList.ejs', {list: list, user: req.params.id});
+        }
+   /*
     if(req.params.id === req.user.id || req.user.id === list[0].creator.toString()){
         res.render('houseList.ejs', {list: list,
             url});
     }
     else{
         res.render('shareList.ejs', {list: list});
-    }
+    }*/
 });
 app.get('/hothouses', isLoggedIn, async(req,res)=>{
     let list = await HouseService.getHotHouses(req.params.id);

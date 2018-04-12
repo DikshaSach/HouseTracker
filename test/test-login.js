@@ -13,91 +13,56 @@ const {TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
 
-const createAccountCredentials = {
-    "username": "Dikshas",
-    "password": "Diksha12345"
-}
 
-const loginCredentials = {
-    "username": "Dikshas",
-    "password": "Diksha12345",
-    "id": "41224d776a326fb40f000001"
-}
-
-function tearDownDb() {
-    console.warn('Deleting database!');
-    return mongoose.connection.db.dropDatabase();
-}
-
-describe('Create Account, Login and Check Token', function() {
-    before(function() {
+describe('Auth endpoints', function(){
+    const username = 'exampleUser@test.com';
+    const password = 'examplePass';
+    before(function(){
         return runServer(TEST_DATABASE_URL);
     });
-
-    beforeEach(function() {
-        return User.create(createAccountCredentials);
-    });
-
-    afterEach(function() {
-        return tearDownDb();
-    });
-
-    after(function() {
+    after(function(){
         return closeServer();
+
     });
-   
-describe('/POST Create Account', function() {
-    it('should create account, login, and check authToken', function() {
-        chai.request(app)
-        .post('/api/users')
-        .send(createAccountCredentials)
-        .then((err, res) => {
-            res.should.have.status(201);
-            expect(res.body.state).to.be.true;
-           
-        })
-    })
-});
-    let authToken;
-    describe('/POST Log in to account', function() {
-         it('should log in and receive authToken', function() {
-            chai.request(app)
+    beforeEach(function(){
+        return User.hashPassword(password).then(password =>
+        User.create({
+            username, 
+            password
+        }));
+    });
+    afterEach(function(){
+        return User.remove({});
+    });
+
+    describe('/api/auth/login', function(){
+        it('should reject request with no credentials', function(){
+            return chai.request(app)
             .post('/api/auth/login')
-            .send(loginCredentials)
-            .then((err, res) => {
-                res.should.have.status(200);
-                expect(res.body.state).to.be.true;
-                res.body.should.have.property('authToken');
-                authToken = res.body.authToken;
-            })
-        })
-    });
-
-    describe('/GET Access and use protected page', function() {
-        it('should have access to protected page', function() {
-            chai.request(app)
-            .get('/api/protected')
-            .set('Authorization', `Bearer ${ authToken }`)
-            .then((err, res) => {
-                res.should.have.status(200);
-                expect(res.body.state).to.be.true;
-                res.body.data.should.be.an('object');
-            })
-        })
-    });
-
-    describe('/POST To request new JWT', function() {
-        it('should give new JWT with a later expiry date', function() {
-            chai.request(app)
-            .post('/api/auth/refresh')
-            .set('Authorization', `Bearer ${ authToken }`)
-            .then((err, res) => {
-                res.should.have.status(200);
-                expect(res.body.state).to.be.true;
-                res.body.should.have.property('authToken'); 
-            })
-        })
+            .then(()=>
+                expect.fail(null, null, 'request shouldnt succeed')
+        )
+        .catch(err =>{
+            if(err instanceof chai.AssertionError){
+                throw err;
+                
+            }
+            const res = err.response;
+            expect(res).to.have.status(400);
+        });
+        });
+        it('should return valid auth token', function(){
+            return chai.request(app)
+            .post('/api/auth/login')
+            .send({username, password})
+            .then(res =>{
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an('object');
+                const token = res.body.authToken;
+                expect(token).to.be.a('string');
+             });
+        });
+        //
     });
 });
-
-
+ 
