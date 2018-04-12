@@ -1,6 +1,6 @@
 'use strict';
 
-exports.DATABASE_URL =  DATABASE_URL || 'mongodb://localhost/house-project';
+exports.DATABASE_URL =  process.env.DATABASE_URL || 'mongodb://localhost/house-project';
 exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL || 'mongodb://localhost/test-house-project';
 exports.PORT = process.env.PORT || 8080;
 
