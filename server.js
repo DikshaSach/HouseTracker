@@ -111,13 +111,18 @@ app.get('/hothouses', isLoggedIn, async(req,res)=>{
     let list = await HouseService.getHotHouses(req.params.id);
     res.render('hothouses.ejs', {list: list, url});
 })
-app.get('/about', isLoggedIn, async (req, res)=>{
-   
+app.get('/about',  async (req, res)=>{
     url = req.params.id;
     res.render('about.ejs', url);
 });
+
 app.get('/register', (req, res) =>{
     res.render('register.ejs');
+});
+app.get('/browse', async (req, res)=>{
+    let list= await HouseService.browseHouses();
+
+    res.render('browseHouses.ejs',{list:list});
 });
 
 let server;

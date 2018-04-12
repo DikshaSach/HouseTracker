@@ -1,0 +1,57 @@
+<link rel="stylesheet" type="text/css" href="/index.css" />
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body>
+    <%- include navbar.ejs %>
+    <div><h1 style="text-align: center;">Houses Other Users Are looking at!</h1></div>
+    <ul id="houseList">
+        <% if (list != null) { %>
+            <% for(var i=0; i< list.length; i++) { %>
+                <li houseID="<%= list[i].id %>" id="<%= list[i].id %>" class="listItemHouse">
+                    <span id="houseRatingSpan">
+            <% for(var y=0; y< list[i].rating; y++) { %>
+           <img src="/images/heart.png" class="heart-image" style="height: 25px;">     
+                    <% } %>
+            </span>
+    
+                    <br>
+    
+                    <span id="housePriceSpan">&nbsp;<span id="bulletpoint"> &#8226; &nbsp;</span>
+                    <%= list[i].price %>
+                        </span>
+                        <br>
+                        <span id="houseLocationSpan"> <%= list[i].location %> </span>
+                        <img class="house-image" src="<%= list[i].image %>" style="height: 300px;">
+                </li>
+                <% } %>
+    
+                    <% } %>
+    </ul>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/index.js"></script>
+<script src="/account.js"></script>
+<script src="/clickHandlers.js"></script>
+<script src="/http.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
+<script type="text/javascript">
+    new Clipboard('.copy-button');
+</script>

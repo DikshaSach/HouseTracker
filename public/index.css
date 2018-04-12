@@ -589,6 +589,7 @@ color: black;
     border-radius: 12px;
     font-size: 20px;
 }
+
 @media only screen and (max-width: 900px) {
     .listItemHouse{
         width: 45%;  
@@ -604,12 +605,21 @@ color: black;
       #images-div > h1{
           font-size: 18px;
       }
+     .house-tracker{
+         font-size: 36px;
+         padding-top: 10px;
+     }
       #single-house-price p{
-          padding-top: 10px;
+          padding-top: 16px;
           font-size: 30px;
           border-bottom: none;
       }
-      
+      #navbarLinks{
+          padding-top: 16px;
+      }
+      nav{
+          font-size: 22px;
+      }
       #houseList{
           padding-left: 40px;
       }
@@ -637,6 +647,7 @@ nav, #dashboard-nav{
   }
   #navbarLinks{
       border-bottom: 1px solid black;
+      padding-top:3px;
   }
   #links{
       padding: 0;

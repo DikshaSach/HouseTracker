@@ -127,6 +127,15 @@ function HouseService() {
             resolve(list);
         })
     }
+    this.browseHouses = function(){
+        return new Promise (async (resolve,reject)=>{
+            let list = HouseLog
+            .find()
+            .limit(10)
+            .exec();
+            resolve(list);
+        })
+    }
 }
 
 module.exports = new HouseService();
