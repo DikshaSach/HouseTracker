@@ -19,12 +19,14 @@ Demo Account Credentials
 * Cloudinary
 ## Screenshots
 
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot1.png) 
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/Screenshot1.png) 
 
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot2.png)  
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/Screenshot2.png)  
 
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot3.png)
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/Screenshot3.png)
 
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot4.png) 
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/Screenshot4.png)
+
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/Screenshot5.png) 
 ## Author
 Diksha Sach
