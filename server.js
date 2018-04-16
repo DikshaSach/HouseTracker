@@ -39,7 +39,6 @@ app.use(function (req, res, next) {
   });
 
   passport.use(localStrategy);
-  passport.use(jwtStrategy);
   
   // create user,pass
   app.use('/api/users', usersRouter);
@@ -58,7 +57,7 @@ app.use(function (req, res, next) {
         req.user = decoded.user;
         return next();
     } else{
-        res.redirect('/signin'); 
+        return next();
     }
   }
   
@@ -83,6 +82,12 @@ app.get('/house/:id', isLoggedIn, async (req, res)=>{
         res.render('shareHouse.ejs', {house: house});
     }
 });
+app.get('/logOut', (req, res) =>{
+req.logout()
+res.clearCookie('connect.sid');
+res.redirect('/');
+
+})
 
 app.get('/houseList/:id',  isLoggedIn, async (req, res)=>{
     let list = await HouseService.getList(req.params.id);
@@ -98,14 +103,7 @@ app.get('/houseList/:id',  isLoggedIn, async (req, res)=>{
         else{
             res.render('shareList.ejs', {list: list, user: req.params.id});
         }
-   /*
-    if(req.params.id === req.user.id || req.user.id === list[0].creator.toString()){
-        res.render('houseList.ejs', {list: list,
-            url});
-    }
-    else{
-        res.render('shareList.ejs', {list: list});
-    }*/
+
 });
 app.get('/hothouses', isLoggedIn, async(req,res)=>{
     let list = await HouseService.getHotHouses(req.params.id);

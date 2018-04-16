@@ -23,11 +23,11 @@
     <input type="image" src="/images/add.png" id="adding-houses">
     <input type="image" src="/images/hothouse.png" id="hothouses">
 </div>
-
+<h1 class="houseList-Title">Houses being tracked:</h1> 
 <ul id="houseList">
     <% if (list != null) { %>
         <% for(var i=0; i< list.length; i++) { %>
-            <li houseID="<%= list[i].id %>" id="<%= list[i].id %>" class="listItemHouse">
+            <li houseID="<%= list[i].id %>" id="<%= list[i].id %>" class="listItemHouse userList">
                 <span id="houseRatingSpan">
         <% for(var y=0; y< list[i].rating; y++) { %>
        <img src="/images/heart.png" class="heart-image" style="height: 25px;">     
@@ -41,7 +41,7 @@
                     </span>
                     <br>
                     <span id="houseLocationSpan"> <%= list[i].location %> </span>
-                    <img class="house-image" src="<%= list[i].image %>" style="height: 300px;">
+                    <img class="house-image" src="<%= list[i].image %>">
             </li>
             <% } %>
 

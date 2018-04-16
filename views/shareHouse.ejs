@@ -5,11 +5,23 @@
 <% if (house != null) { %>
 
     <nav>
-        <%- include navbar.ejs %>
+        <div id="navBarLogo">
+            <a class="house-icon" href="/" src="/images/houses_icon.png">
+                <img class="house-icon" src="/images/houses_icon.png">
+            </a>
+            <h1 class="house-tracker">House Tracker</h1>
+        </div>
+        <div id="navbarLinks">
+            <a href="/" class="home">Home &#8226;</a>
+            <a href="/signin" class="sign-in">SignIn &#8226; </a>
+            
+            <a href="/register" class="register">Register</a> 
+            </div>
+            
     </nav>
 
-    <div id="singleHouseInfoDiv">
-        <input type="image" src="/images/back.png" style="top:100px;" class="closediv" houseID="<%= house[0]._id %>" creatorID="<%= house[0].creator %>" id="<%= house[0]._id %>">
+    <div id="singleHouseInfoDiv" >
+        <input type="image" src="/images/back.png" style="top:120px;" class="closediv" houseID="<%= house[0]._id %>" creatorID="<%= house[0].creator %>" id="<%= house[0]._id %>">
         <div id="single-house-name" class="detailsOfHouse"><span><%= house[0].name %><span></div>
         <div id="single-house-location"  class="detailsOfHouse"><%= house[0].location %> </div>
         <br>     

@@ -32,6 +32,7 @@ function onClickAddingHouses() {
         $('#sharelink').hide();
         $('.house-edit').hide();
         $('#hothouses').hide();
+        $('.houseList-Title').hide();
     });
 }
 

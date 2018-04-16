@@ -36,15 +36,5 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
         });
         
 });
-// defines where it should find JWT in our API
-const jwtStrategy = new JwtStrategy(
-    {
-        secretOrKey: JWT_SECRET,
-        jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
-        algorithms: ['HS256']
-    },
-    (payload, done) => {
-        done(null, payload.user);
-    });
-    
-    module.exports = {localStrategy, jwtStrategy};
+
+    module.exports = {localStrategy};

@@ -18,34 +18,7 @@ function tearDownDb() {
     console.warn('Deleting database!');
     return mongoose.connection.db.dropDatabase();
 }
-/*
-const createPost = {
-    name: "Test",
-    price: '$1',
-    details: "Testing details",
-    location: "123 abc st NY, 11415",
-    garage: "Yes",
-    cooling: "central",
-    heating: "central",
-    bedroom: "1",
-    bathroom: "1",
-    pool: "Yes",
-    creator: "41224d776a326fb40f000001"
-}
-const updatePost = {
-    name: "TestEdit",
-    price: '$1Edit',
-    details: "Testing details Edit",
-    location: "123 abc st NY, 11415Edit",
-    garage: "YesEdit",
-    cooling: "centralEdit",
-    heating: "centralEdit",
-    bedroom: "1Edit",
-    bathroom: "1Edit",
-    pool: "YesEdit",
-    creator: "41224d776a326fb40f000001"
-}
-*/
+
 function tearDownDb() {
     console.warn('Deleting database!');
     return mongoose.connection.db.dropDatabase();
@@ -91,9 +64,9 @@ describe('get endpoint', function(){
             expect(res.body).to.have.lengthOf.at.least(1);
         })
     });
-    /*
+    
     describe('POST endpoint', function() {
-        it('should add a new House post', function(done) {
+        it('should add a new House post', function() {
             
         const newPost = {
             "name": "house99",
@@ -119,13 +92,13 @@ describe('get endpoint', function(){
                 expect(res).to.be.status(201);
                 expect(res).to.be.json;
                 expect(res.body).to.be.a('object');
-               
                 console.log(res.body);
-               //return HouseLog.findById(res.body._id);
+               return HouseLog.findById(res.body._id);
+              
             });   
         });
     });
-    */
+    
     describe('DELETE endpoint', function() {
         it('should delete a sleep log post', function() {
             let log;
