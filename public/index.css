@@ -1,10 +1,13 @@
+html{
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+    padding-bottom: 25px;
+}
 body{
     padding: 0;
     margin: 0;
     font-family: 'Josefin Slab', serif;
-    height:100%;
-    position: relative;  
- 
 }
 
 
@@ -169,8 +172,12 @@ a.about-page{
 }
 
 footer{
+    padding-top: 5px;
     text-align: center;
     position: absolute;
+    bottom: 0;
+    left: 0;
+    height:25px;
    background-color: #E7FAF5;
     width:100%;
     font-size: 17px;
@@ -571,7 +578,8 @@ margin-top: 100px;
 
 }
 #demo-acc{
-   margin-top: -40px;
+    font-size: 17px;
+   margin-bottom: 40px;
     text-align: center;
     width: 50%;
     margin: 0 auto;
@@ -579,6 +587,10 @@ margin-top: 100px;
     border: 1px solid black;
     margin-bottom: 10px;
  
+}
+#demo-acc >h1 {
+    padding: 0;
+    margin: 0;
 }
 #sharelink{
     width: 100%;

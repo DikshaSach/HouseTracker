@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+<div id='container'> 
     <nav>
         <%- include navbar.ejs %>
     </nav>
@@ -27,7 +27,7 @@
                 <input type="password" id="acc-password" name="password" placeholder="Enter password" pattern=".{8,}"   required title="8 characters minimum" required>
                 <br>
                 <button type="submit" class="login-submit">Login</button>
-                <p>Don't have an account? Register <a href="/">Here!</a></p>
+                <p>Don't have an account? Register <a href="/register">Here!</a></p>
             </form>
         </div>
     </div>
@@ -38,7 +38,7 @@
             <br> password: 1234567890
         </p>
     </div>
-
+</div>
     <footer>
         <%- include footer.ejs %>
     </footer>
