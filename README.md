@@ -11,6 +11,12 @@ https://secure-basin-62117.herokuapp.com/
 Demo Account Credentials  
 **Username:** testing  
 **Password:** 1234567890
+## To Run Locally
+ Git Clone this repo  
+ cd into folder  
+`npm install`  
+`npm start`
+
 ## Technology Used
 * Node
 * Express
