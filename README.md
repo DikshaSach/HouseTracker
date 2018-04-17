@@ -26,7 +26,7 @@ Demo Account Credentials
 
 ![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot1.png) 
 
-![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot2.jpg)  
+![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/Screenshot2.jpg)  
 
 ![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/screenshot3.png)
 
