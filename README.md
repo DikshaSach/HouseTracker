@@ -2,7 +2,7 @@
 HouseTracker is a simple app that allows users to keep track of their prospective houses in an organized manner. 
 Users can add/edit and delete properties to their dashboard. Then easily grab a link that they can share with friends and family.
 * Allows Users to add houses of their liking
-* Allows users to edit houses of their choosing
+* Allows users to edit houses of their liking
 * Allows users to delete houses of their liking
 * Allows users to share a link with others of all the houses they are currently tracking.
 
