@@ -41,3 +41,5 @@ Demo Account Credentials
 ![My image](https://github.com/DikshaSach/HouseTracker/blob/master/public/images/Screenshot5.png) 
 ## Author
 Diksha Sach
+## Credit
+Noun Project - For providing icon images.
