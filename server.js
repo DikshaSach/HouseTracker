@@ -9,9 +9,9 @@ const passport = require('passport');
 const {router: usersRouter} = require('./users');
 const session = require('express-session');
 const houseRouter = require('./houses/router');
-
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 const {PORT, DATABASE_URL} = require('./config');
+var favicon = require('serve-favicon');
 const app = express();
 
 
@@ -20,6 +20,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
   }));
+  app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.use(passport.initialize());
 app.use(passport.session());
