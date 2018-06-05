@@ -16,6 +16,18 @@ Demo Account Credentials
  cd into folder  
 `npm install`  
 `npm start`
+## API
+I created my own RESTful API to contain all of the house data that was created by the application.
+RESTful endpoints    
+#### GET    
+Getting all houses ````...api/houses/api/houses````    
+Getting specific house ````...api/houses/:id````    
+#### PUT    
+Updating house ````...api/houses/:id````    
+#### Delete     
+Deleting a house ````....api/houses/:id````    
+#### POST
+Adding a house ````....api/houses/post````    
 
 ## Technology Used
 * Node
