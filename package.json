@@ -20,7 +20,7 @@
     "ejs": "^2.5.8",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "jsonwebtoken": "^8.2.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.0.7",
     "nodemon": "^1.17.2",
     "npm": "^5.7.1",
